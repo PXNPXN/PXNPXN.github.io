@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>vue学习</title>
-      <link href="/2020/04/03/vue%E5%AD%A6%E4%B9%A0/"/>
-      <url>/2020/04/03/vue%E5%AD%A6%E4%B9%A0/</url>
-      
-        <content type="html"><![CDATA[<h1 id="今天你学Vue了吗-1"><a href="#今天你学Vue了吗-1" class="headerlink" title="今天你学Vue了吗?(1)"></a>今天你学Vue了吗?(1)</h1><a id="more"></a><p>  作为程序员中的小小白，对vue敬仰已久。这几天心血来潮，想学习一些基础的vue语法，请大佬们赐教。(vue是MVVM(model-view-viewmodel)模式)</p><h2 id="如何使用vue呢？"><a href="#如何使用vue呢？" class="headerlink" title="如何使用vue呢？"></a>如何使用vue呢？</h2><h3 id="1-可以直接在-html-文件中，引用一下代码使用Vue："><a href="#1-可以直接在-html-文件中，引用一下代码使用Vue：" class="headerlink" title="1. 可以直接在.html 文件中，引用一下代码使用Vue："></a>1. 可以直接在.html 文件中，引用一下代码使用Vue：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>或者：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="2-还有更多安装Vue的方式。但不推荐新手直接使用-vue-cli，尤其不熟悉基于Node-js-的构建工具。"><a href="#2-还有更多安装Vue的方式。但不推荐新手直接使用-vue-cli，尤其不熟悉基于Node-js-的构建工具。" class="headerlink" title="2.还有更多安装Vue的方式。但不推荐新手直接使用 vue-cli，尤其不熟悉基于Node.js  的构建工具。"></a>2.还有更多安装Vue的方式。但不推荐新手直接使用 vue-cli，尤其不熟悉基于Node.js  的构建工具。</h3><h2 id="Coding-Show："><a href="#Coding-Show：" class="headerlink" title="Coding Show："></a>Coding Show：</h2><p>Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进DOM的系统：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">   &#123;&#123;message&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> Vue(&#123;</span><br><span class="line">   el: <span class="string">'#app'</span></span><br><span class="line">   data: &#123;</span><br><span class="line">     message: <span class="string">'Hello Vue!'</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello Vue!</span><br></pre></td></tr></table></figure><p>vue的数据绑定。数据绑定是将数据和视图相关联，当数据发生变化时，可以自动更新视图。</p><p>以上代码便是数据绑定的例子。是文本插值，是最基本的方式，例子中的将会被相应的数据对象替换。当text的值变化时，文本的内容也会联动地发生变化。有时候只需要渲染一次数据，后续数据变化不再关心，可以通过“*”实现，代码：</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span></span></span><br><span class="line"><span class="tag">   &#123;&#123;*<span class="attr">message</span>&#125;&#125;</span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure><p>双大括号标签会把里面的值全部当作字符串来处理。</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> vue </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+<search>
+  <entry>
+    <title>vue学习</title>
+    <url>/2020/04/03/vue%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="今天你学Vue了吗-1"><a href="#今天你学Vue了吗-1" class="headerlink" title="今天你学Vue了吗?(1)"></a>今天你学Vue了吗?(1)</h1><a id="more"></a>
+
+<p>  作为程序员中的小小白，对vue敬仰已久。这几天心血来潮，想学习一些基础的vue语法，请大佬们赐教。(vue是MVVM(model-view-viewmodel)模式)</p>
+<h2 id="如何使用vue呢？"><a href="#如何使用vue呢？" class="headerlink" title="如何使用vue呢？"></a>如何使用vue呢？</h2><h3 id="1-可以直接在-html-文件中，引用一下代码使用Vue："><a href="#1-可以直接在-html-文件中，引用一下代码使用Vue：" class="headerlink" title="1. 可以直接在.html 文件中，引用一下代码使用Vue："></a>1. 可以直接在.html 文件中，引用一下代码使用Vue：</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 生产环境版本，优化了尺寸和速度 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-还有更多安装Vue的方式。但不推荐新手直接使用-vue-cli，尤其不熟悉基于Node-js-的构建工具。"><a href="#2-还有更多安装Vue的方式。但不推荐新手直接使用-vue-cli，尤其不熟悉基于Node-js-的构建工具。" class="headerlink" title="2.还有更多安装Vue的方式。但不推荐新手直接使用 vue-cli，尤其不熟悉基于Node.js  的构建工具。"></a>2.还有更多安装Vue的方式。但不推荐新手直接使用 vue-cli，尤其不熟悉基于Node.js  的构建工具。</h3><h2 id="Coding-Show："><a href="#Coding-Show：" class="headerlink" title="Coding Show："></a>Coding Show：</h2><p>Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进DOM的系统：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">   &#123;&#123;message&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> Vue(&#123;</span><br><span class="line">   el: <span class="string">'#app'</span></span><br><span class="line">   data: &#123;</span><br><span class="line">     message: <span class="string">'Hello Vue!'</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight erlang-repl"><table><tr><td class="code"><pre><span class="line">Hello Vue!</span><br></pre></td></tr></table></figure>
+
+<p>vue的数据绑定。数据绑定是将数据和视图相关联，当数据发生变化时，可以自动更新视图。</p>
+<p>以上代码便是数据绑定的例子。是文本插值，是最基本的方式，例子中的将会被相应的数据对象替换。当text的值变化时，文本的内容也会联动地发生变化。有时候只需要渲染一次数据，后续数据变化不再关心，可以通过“*”实现，代码：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span></span></span><br><span class="line"><span class="tag">   &#123;&#123;*<span class="attr">message</span>&#125;&#125;</span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>双大括号标签会把里面的值全部当作字符串来处理。</p>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
 </search>
