@@ -1220,7 +1220,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #cf5d09;
+  background: #1fffed;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1563,6 +1563,16 @@ pre .javascript .function {
     left: 20px;
     opacity: 0.8;
   }
+}
+.reading-progress-bar {
+  background: #37c6c0;
+  display: block;
+  height: 3px;
+  left: 0;
+  position: fixed;
+  width: 0;
+  z-index: 1500;
+  top: 0;
 }
 .post-body {
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -2539,17 +2549,17 @@ embed {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.post {
-  width: 100%;
-  margin-top: 1em;
-  margin-bottom: 3em;
-  padding: 1em;
-  -webkit-box-shadow: 0 0 0.5em rgba(202,203,203,0.5);
-}
 .use-motion .post-block,
 .use-motion .pagination,
 .use-motion .comments {
   opacity: 0;
+}
+.post-block {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 25px;
+  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 .posts-expand .post-eof {
   margin: 4em auto 4em;
