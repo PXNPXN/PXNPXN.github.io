@@ -28,4 +28,47 @@
         <tag>vue</tag>
       </tags>
   </entry>
+  <entry>
+    <title>hexo错误解决</title>
+    <url>/2020/04/04/hexo%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</url>
+    <content><![CDATA[<h1 id="今天遇到的hexo错误，记录下以免以后遇到忘记。"><a href="#今天遇到的hexo错误，记录下以免以后遇到忘记。" class="headerlink" title="今天遇到的hexo错误，记录下以免以后遇到忘记。"></a>今天遇到的hexo错误，记录下以免以后遇到忘记。</h1><a id="more"></a>
+
+<h2 id="1-当执行新建文章命令时："><a href="#1-当执行新建文章命令时：" class="headerlink" title="1. 当执行新建文章命令时："></a>1. 当执行新建文章命令时：</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="string">"text"</span></span><br></pre></td></tr></table></figure>
+
+<p>默认[layout]为post。布局.md文件都在scaffolds文件夹下，共有post、draft、page三种。</p>
+<p>执行完命令报错：</p>
+<table>
+<thead>
+<tr>
+<th>YAMLException: can not read a block mapping entry; a multiline key may not be an implicit key at line 5, column 1:</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+</tr>
+</tbody></table>
+<p>该错误的原因：是文章或文章布局中的属性: 后面没有空格。当然要是一些配置文件：后面没有空格的话肯定也会报错误。</p>
+<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:</span><br><span class="line">categories: </span><br><span class="line">copyright: </span><br><span class="line">--------------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>后面发现后加了空格，但是不小心又点击了哪里把格式给弄乱了，虽然：后面都有空格，但是用Typora工具查看是下面少了一行虚线，于是就报了如下错误：</p>
+<table>
+<thead>
+<tr>
+<th>Cannot read property ‘replace’ of undefined</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+</tr>
+</tbody></table>
+<p>看了很多帖子也没有太好的解决办法，于是我猜想就跟那一行虚线有关，其他layout文件用Typora工具打开后是有虚线的，于是我就复制了page.md, 更名为post.md。于是重新执行hexo new命令，结果就解决问题了</p>
+<p>归根结底还是冒号(:)后面没有加空格的原因。希望以后多多注意！！！</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
 </search>

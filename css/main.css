@@ -1220,7 +1220,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6cffbf;
+  background: #ffff47;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2548,11 +2548,6 @@ embed {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.use-motion .post-block,
-.use-motion .pagination,
-.use-motion .comments {
-  opacity: 0;
 }
 .post-block {
   margin-top: 60px;
