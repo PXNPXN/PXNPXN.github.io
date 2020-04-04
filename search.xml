@@ -71,4 +71,66 @@
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>kotlin知识点记录</title>
+    <url>/2020/04/04/kotlin%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>kotlin学习记录</p>
+<a id="more"></a>
+
+<p>kotlin和java的使用方法有所区别。Kotlin下载Android Studio后就可以使用。<a href="https://developer.android.com/kotlin/learn" target="_blank" rel="noopener">kotlin文档</a></p>
+<p>kotlin使用两个不同的关键字（即val和var）来声明变量。</p>
+<ol>
+<li>val 用于值从不更改的变量。不能使用val声明的变量重新赋值。就相当于java中的final。</li>
+<li>var 用于可以更改的变量。</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> temp: <span class="built_in">Int</span>=<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，count是一个Int类型的变量，为其赋予的初始值为10：</p>
+<p>Kotlin出了Int类型的，还有Byte、Short、Long、Float和Double、String类型的变量。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> name1: String =<span class="string">"kotlin"</span></span><br><span class="line">name1=<span class="string">"helloworld"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name2: String =<span class="string">"kotlin"</span></span><br><span class="line">name2=<span class="string">"helloworld"</span></span><br></pre></td></tr></table></figure>
+
+<p>如上例，name1为val，因此name1被赋值后仍是”kotlin”。而name2是var，被赋值后可以改变，因此name2的值变更为”helloword”。</p>
+<p>（注：kotlin编译器可根据所赋值的类型来推断类型，kotlin是一种静态类型的语言。String类型的变量也只能调用String类型的函数）</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> num: <span class="built_in">Int</span>=<span class="number">1</span></span><br><span class="line">num.inc()     <span class="comment">//num.inc()的结果为2，但是num的值并不会变，且num++这种方式kotlin不支持</span></span><br><span class="line">num+=<span class="number">1</span>    <span class="comment">//这种方式kotlin是支持的，执行完后，num=2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Null安全"><a href="#Null安全" class="headerlink" title="Null安全"></a>Null安全</h2><p>在某些语言中，可以声明引用类型变量而不明确提供初始值。在这些情况下，变量通常包含null值。默认情况下，Kotlin变量不能持有null。下段代码无效：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> name: String =<span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<p>要使变量持有null值，它必须是为null类型。可以在变量类型后面加上？后缀，可以将变量指定为null</p>
+<p>如下所示:</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> name: String?=<span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<p>指定String?类型后，可以将name赋值为null或具体的字符串。</p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>在kotlin中，必须在声明对象时初始化对象的属性。这意味着，当获取类的实例时，立即引用它的任何可访问属性。当调用Fragment#onCreateView之前，Fragment中的View对象尚未准备好进行扩充，所以要推迟View的属性初始化。可以使用 lateinit 推迟属性初始化。使用lateinit时，应尽快初始化属性。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginFragment</span> : <span class="type">Fragment</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> usernameEditText: EditText</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> passwordEditText: EditText</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> loginButton: Button</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> statusTextView: TextView</span><br><span class="line"></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onViewCreated</span><span class="params">(view: <span class="type">View</span>, savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">            <span class="keyword">super</span>.onViewCreated(view, savedInstanceState)</span><br><span class="line"></span><br><span class="line">            usernameEditText = view.findViewById(R.id.username_edit_text)</span><br><span class="line">            passwordEditText = view.findViewById(R.id.password_edit_text)</span><br><span class="line">            loginButton = view.findViewById(R.id.login_button)</span><br><span class="line">            statusTextView = view.findViewById(R.id.status_text_view)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> <span class="title">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">final</span> String name;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">final</span> String type;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="meta">@Nullable</span> String accessId;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>当变量带有@Nullable注解时，表示它可空，kotlin会将accessId视为String？</p>
+<p>要指明变量绝不能为null，则使用@NonNull注解：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> <span class="title">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">final</span> <span class="meta">@NonNull</span> String name;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果要修剪name以使其值不包含前导或尾随空格，则可以使用Kotlin的 trim函数。通过几种不同的方式安全地修剪String？。其中一种方式是使用非null断言预算符！！，如下示例：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> account = Account(<span class="string">"name"</span>, <span class="string">"type"</span>)</span><br><span class="line">    <span class="keyword">val</span> accountName = account.name!!.trim()</span><br></pre></td></tr></table></figure>
+
+<p>！！运算符将其左侧的所有内容视为非null，一次，在本例中，将name视为非null String。 如果它左侧表达式的结果为null，则应用会抛出NullPointerException。</p>
+<p>更安全的选择是使用安全调用运算符?.   ，如下所示：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> account = Account(<span class="string">"name"</span>, <span class="string">"type"</span>)</span><br><span class="line">    <span class="keyword">val</span> accountName = account.name?.trim()</span><br></pre></td></tr></table></figure>
+
+<p>使用安全调用运算符时，如果 <code>name</code> 不为 null，则 <code>name?.trim()</code> 的结果是一个不带前导或尾随空格的名称值。如果 <code>name</code> 为 null，则 <code>name?.trim()</code> 的结果为 <code>null</code>。这意味着，在执行此语句时，您的应用永远不会抛出 <code>NullPointerException</code>。</p>
+<p>虽然安全调用运算符可使您避免潜在的 <code>NullPointerException</code>，但它会将 null 值传递给下一个语句。您可以使用 Elvis 运算符 (<code>?:</code>) 来紧接着处理 null 值的情况，如以下示例所示：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> account = Account(<span class="string">"name"</span>, <span class="string">"type"</span>)</span><br><span class="line">    <span class="keyword">val</span> accountName = account.name?.trim() ?: <span class="string">"Default name"</span></span><br></pre></td></tr></table></figure>
+
+<p>如果 Elvis 运算符左侧表达式的结果为 null，则会将右侧的值赋予 <code>accountName</code>。此方法对于提供本来为 null 的默认值很有用。</p>
+<p>您还可以使用 Elvis 运算符提前从函数返回结果，如以下示例所示：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">validateAccount</span><span class="params">(account: <span class="type">Account</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> accountName = account?.name?.trim() ?: <span class="string">"Default name"</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// account cannot be null beyond this point</span></span><br><span class="line">        account ?: <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android-kotlin</tag>
+      </tags>
+  </entry>
 </search>
