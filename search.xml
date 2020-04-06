@@ -133,4 +133,126 @@
         <tag>Android-kotlin</tag>
       </tags>
   </entry>
+  <entry>
+    <title>HTML元素--1</title>
+    <url>/2020/04/06/HTML%E5%85%83%E7%B4%A01/</url>
+    <content><![CDATA[<h1 id="HTML元素小记–ol-ul-dl-table"><a href="#HTML元素小记–ol-ul-dl-table" class="headerlink" title="HTML元素小记–ol-ul-dl-table"></a>HTML元素小记–ol-ul-dl-table</h1><a id="more"></a>
+
+<p>可能这些东西对某些大佬老说已经非常熟悉了，但是作为小白的我，依旧需要记录一下，毕竟web前端不是经常用，而且写博客也是催促自己学习的一种方式，若某天大佬看了，请自动忽略本文。只供自己学习用，请勿嘲笑。</p>
+<h2 id="1-无序列表标签–ul"><a href="#1-无序列表标签–ul" class="headerlink" title="1. 无序列表标签–ul"></a>1. 无序列表标签–ul</h2><ul>是无序的列表标签，无序嘛，就是列表中的内容是没有顺序的。无序列表中的每一项是<li>
+
+<p>所有主流浏览器都支持ul标签。</p>
+<p> 英文单词解释：</p>
+<pre><code>*ul: unordered list, &quot;无序列表&quot;
+
+*li: list item, &quot;列表项&quot;</code></pre><p>例如(示例使用了Vue框架，使用时请自行引入Vue框架文件)：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"ex1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"text in texts"</span>&gt;</span></span><br><span class="line">                &#123;&#123;text.node&#125;&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> ex1=<span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#ex1'</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line">            text:[</span><br><span class="line"><span class="actionscript">                &#123;node:<span class="string">'苹果'</span>&#125;,</span></span><br><span class="line"><span class="actionscript">                &#123;node:<span class="string">'梨'</span>&#125;,</span></span><br><span class="line"><span class="actionscript">                &#123;node:<span class="string">'草莓'</span>&#125;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>浏览器效果如下：</p>
+<ul>
+<li>苹果</li>
+<li>梨</li>
+<li>草莓</li>
+</ul>
+<hr>
+<p>属性：</p>
+<ul>
+<li>type=”属性值”。属性值可选: disc(实心原点，默认), square(实心方点)，circle(空心圆)</li>
+</ul>
+<hr>
+<p>注意：</p>
+<ul>
+<li>注意li不能单独使用，且ul标签中的”儿子标签”只能是 li .</li>
+<li>ul的作用：是增加无序列表的”语义”的。</li>
+<li>li 是一个容器标签，可以放其他的标签元素，甚至是ul</li>
+<li>这里就不比较HTML和XHTML之间的差异了，如果需要请自行到<a href="https://www.w3school.com.cn/tags/tag_ul.asp" target="_blank" rel="noopener">W3school</a>查看</li>
+</ul>
+<hr>
+<p>ul 标签可以多层复杂嵌套：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">b</span>&gt;</span>水果<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>苹果<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>梨<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>香蕉<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">b</span>&gt;</span>鲜花<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>玫瑰花</span><br><span class="line">                <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>红玫瑰<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>白玫瑰<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>康乃馨<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>杜鹃花<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>丁香花<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>应用场景：</p>
+<ul>
+<li>导航栏</li>
+<li>类似于购物清单列表</li>
+</ul>
+<hr>
+<h2 id="2-有序列表-–ol-里面的每一项是–-li"><a href="#2-有序列表-–ol-里面的每一项是–-li" class="headerlink" title="2. 有序列表 –ol,  里面的每一项是– li"></a>2. 有序列表 –ol,  里面的每一项是– li</h2><p>所有主流浏览器都支持ol标签。</p>
+<p>英文单词：</p>
+<p>ol :  Ordered List.</p>
+<p>例如</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"ex2"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ol</span> <span class="attr">start</span>=<span class="string">"50"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span>&gt;</span></span><br><span class="line">                &#123;&#123;todo.text&#125;&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> app=<span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#ex2'</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line">            todos:[</span><br><span class="line"><span class="actionscript">                &#123;text:<span class="string">'苹果'</span>&#125;,</span></span><br><span class="line"><span class="actionscript">                &#123;text:<span class="string">'梨'</span>&#125;,</span></span><br><span class="line"><span class="actionscript">                &#123;text:<span class="string">'草莓'</span>&#125;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>演示效果如下：</p>
+<ol start="50">
+<li>苹果</li>
+<li>梨</li>
+<li>草莓</li>
+</ol>
+<hr>
+<p>属性：</p>
+<ul>
+<li>reversed ：规定列表顺序为降序。(9,8,7…) 默认是顺序。</li>
+<li>start ：规定有序列的起始值。</li>
+<li>type ：规定在列表中使用的标记类型。如：(1, A ,a ,I ,i ).</li>
+</ul>
+<hr>
+<p>ol也可以多层嵌套。</p>
+<h2 id="3-定义列表-–dl"><a href="#3-定义列表-–dl" class="headerlink" title="3. 定义列表 –dl"></a>3. 定义列表 –dl</h2><p>dl英文单词：definition list，没有属性。dl的子元素只能是dt和dd。</p>
+<p>dt : definition title列表的标题，这个标签是必须的。</p>
+<p>dd ：definition description 列表的列表项，如果不需要它，可以不加。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dt</span>&gt;</span>第一天<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dd</span>&gt;</span>跑步<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dd</span>&gt;</span>听歌<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dd</span>&gt;</span>写代码<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dt</span>&gt;</span>第二天<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dd</span>&gt;</span>陪老婆<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dd</span>&gt;</span>画画<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dd</span>&gt;</span>做饭<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以这样使用dl</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dt</span>&gt;</span>购物指南<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dd</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>购物流程<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>会员介绍<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>生活旅行/团购<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>常见问题<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>大家电<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>联系客服<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dt</span>&gt;</span>配送方式<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dd</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>上门自提<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>211限时达<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>配送服务查询<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>配送费收取标准<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>海外配送<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-表格标签–table"><a href="#4-表格标签–table" class="headerlink" title="4. 表格标签–table"></a>4. 表格标签–table</h2><p>一个表格table是由每行tr组成的，每行是由td组成的。即一个表格是由行组成的，每行又是由列组成的。</p>
+<p>例如，3行4列的单元格：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>生命壹号<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>23<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>黄冈<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>许嵩<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>29<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>安徽<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>邓紫棋<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>23<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>女<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>香港<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上图表格中是没有边框的。因此需要设置table的属性：</p>
+<p>table的属性：</p>
+<ul>
+<li>border：边框。像素为单位。</li>
+<li>style=“border-collapse:collapse；”      ：单元格的线和表格的边框合并</li>
+<li>width：宽度。px为单位。</li>
+<li>height：高度。px为单位。</li>
+<li>bordercolor：表格的边框颜色。</li>
+<li>align：表格的水平对齐方式。属性值可以填：left right cente。注意：这里不是设置表格里内容的对齐方式，如果想设置内容的对齐方式，要对单元格标签td进行设置)</li>
+<li>cellpadding : 单元格内容到边的距离，像素为单位。默认情况下指最左侧那条边。如果设置属性 dir=”rtl”, 那就指的是内容到最右边那条线的距离。</li>
+<li>cellspacing ：单元格和单元格之间的距离(外边距)，px为单位。默认情况下对的值为0.</li>
+<li>bgcolor=”#99cc66”：表格的背景颜色。</li>
+<li>background=”路径src/…”：背景图片。</li>
+<li>bordercolorlight：表格的上、左边框，以及单元格的右、下边框的颜色。</li>
+<li>bordercolordark：表格的右、下边框，以及单元格的上、左的边框的颜色。这两个属性的目的是为了设置3D的效果。</li>
+<li>dir：公有属性，单元格内容的排列方式。可以取值：ltr：从左到右(默认)，rtl：从右到左。既然说dir是公有属性，如果把这个属性放在任意标签中，那表明这个标签的位置可能会从右开始排列。</li>
+</ul>
+<hr>
+<p>对于<tr>：行</p>
+<p>属性：</p>
+<ul>
+<li><p>dir：公有属性，设置一行单元格内容的排列方式。具体上面讲过。</p>
+</li>
+<li><p>bgcolor：设置一行单元格的背景颜色。</p>
+</li>
+<li><p>height：一行单元格的高度。</p>
+</li>
+<li><p>align=”center”：一行的内容水平居中显示，取值：left、center、right。</p>
+</li>
+<li><p>valign=”center”：一行内容垂直居中，取值：top、middler、bottom。</p>
+<p>注：th：加粗的单元格。相当于td+b 属性同td标签一样。使用时和tr标签并列。</p>
+<hr>
+<p>表格的thead标签、tbody标签、tfoot标签</p>
+<p>当浏览器显示的时候还是按照thead、tbody、tfoot的顺序依次来显示内容。如果不写thead、tbody、tfoot，那么浏览器解析并显示表格内容的时候从按照代码的从上到下的顺序来显示。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>HTML小记</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
 </search>
