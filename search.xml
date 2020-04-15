@@ -315,10 +315,9 @@
       </tags>
   </entry>
   <entry>
-    <title>JQuery-find-函数</title>
-    <url>/2020/04/13/JQuery-find-%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>title: JQuery.find()函数<br>date: 2020-04-13 12:03:08<br>tags: JQuery<br>categories: JQuery<br>copyright: true</p>
-<p>jQuery.find()函数</p>
+    <title>jQuery-find函数</title>
+    <url>/2020/04/15/jQuery-find%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>jQuery.find()函数</p>
 <a id="more"></a>
 
 <h2 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h2><p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以JQuery对象的方式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于JQuery对象(实例)。</p>
@@ -340,5 +339,11 @@
 <h2 id="返回值："><a href="#返回值：" class="headerlink" title="返回值："></a>返回值：</h2><p>find()函数的返回值为jQuery类型，返回一个新的jQuery对象，该对象封装了当前jQuery对象匹配元素的所有符合指定选择器的后代元素。</p>
 <p>如果没有匹配的元素，则返回空 的jQuery对象。</p>
 <h2 id="示例-amp-说明："><a href="#示例-amp-说明：" class="headerlink" title="示例&amp;说明："></a>示例&amp;说明：</h2>]]></content>
+      <categories>
+        <category>jQuery</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+      </tags>
   </entry>
 </search>

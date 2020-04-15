@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-15T05:01:32.346Z</updated>
+  <updated>2020-04-15T08:44:47.352Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jQuery-find函数</title>
+    <link href="http://yoursite.com/2020/04/15/jQuery-find%E5%87%BD%E6%95%B0/"/>
+    <id>http://yoursite.com/2020/04/15/jQuery-find%E5%87%BD%E6%95%B0/</id>
+    <published>2020-04-15T08:42:59.000Z</published>
+    <updated>2020-04-15T08:44:47.352Z</updated>
+    
+    <content type="html"><![CDATA[<p>jQuery.find()函数</p><a id="more"></a><h2 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h2><p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以JQuery对象的方式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于JQuery对象(实例)。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQueryObject.find(expr)</span><br></pre></td></tr></table></figure><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>expr</td><td>String/Element/jQuery类型指定的表达式</td></tr></tbody></table><p>find()函数将在当前JQuery对象每个匹配元素的所有后代元素中筛选符合指定表达式的元素。如果expr参数为字符串，则将其视作jQuery选择器，用以表示该选择器所匹配的元素。jQuery1.6新增支持：参数expr可以为DOM元素(Element)或jQuery对象。</p><h2 id="返回值："><a href="#返回值：" class="headerlink" title="返回值："></a>返回值：</h2><p>find()函数的返回值为jQuery类型，返回一个新的jQuery对象，该对象封装了当前jQuery对象匹配元素的所有符合指定选择器的后代元素。</p><p>如果没有匹配的元素，则返回空 的jQuery对象。</p><h2 id="示例-amp-说明："><a href="#示例-amp-说明：" class="headerlink" title="示例&amp;说明："></a>示例&amp;说明：</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;jQuery.find()函数&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="jQuery" scheme="http://yoursite.com/categories/jQuery/"/>
+    
+    
+      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
+    
+  </entry>
   
   <entry>
     <title>kotlin扩展函数与扩展属性</title>
@@ -36,26 +59,6 @@
     
     
       <category term="kotlin" scheme="http://yoursite.com/tags/kotlin/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JQuery-find-函数</title>
-    <link href="http://yoursite.com/2020/04/13/JQuery-find-%E5%87%BD%E6%95%B0/"/>
-    <id>http://yoursite.com/2020/04/13/JQuery-find-%E5%87%BD%E6%95%B0/</id>
-    <published>2020-04-13T04:03:08.962Z</published>
-    <updated>2020-04-13T15:33:45.977Z</updated>
-    
-    <content type="html"><![CDATA[<p>title: JQuery.find()函数<br>date: 2020-04-13 12:03:08<br>tags: JQuery<br>categories: JQuery<br>copyright: true</p><p>jQuery.find()函数</p><a id="more"></a><h2 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h2><p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以JQuery对象的方式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于JQuery对象(实例)。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQueryObject.find(expr)</span><br></pre></td></tr></table></figure><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>expr</td><td>String/Element/jQuery类型指定的表达式</td></tr></tbody></table><p>find()函数将在当前JQuery对象每个匹配元素的所有后代元素中筛选符合指定表达式的元素。如果expr参数为字符串，则将其视作jQuery选择器，用以表示该选择器所匹配的元素。jQuery1.6新增支持：参数expr可以为DOM元素(Element)或jQuery对象。</p><h2 id="返回值："><a href="#返回值：" class="headerlink" title="返回值："></a>返回值：</h2><p>find()函数的返回值为jQuery类型，返回一个新的jQuery对象，该对象封装了当前jQuery对象匹配元素的所有符合指定选择器的后代元素。</p><p>如果没有匹配的元素，则返回空 的jQuery对象。</p><h2 id="示例-amp-说明："><a href="#示例-amp-说明：" class="headerlink" title="示例&amp;说明："></a>示例&amp;说明：</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;title: JQuery.find()函数&lt;br&gt;date: 2020-04-13 12:03:08&lt;br&gt;tags: JQuery&lt;br&gt;categories: JQuery&lt;br&gt;copyright: true&lt;/p&gt;
-&lt;p&gt;jQuery.find()函数&lt;/p&gt;
-    
-    </summary>
-    
-    
     
   </entry>
   
