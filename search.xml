@@ -101,6 +101,11 @@
 <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> name: String?=<span class="literal">null</span></span><br></pre></td></tr></table></figure>
 
 <p>指定String?类型后，可以将name赋值为null或具体的字符串。</p>
+<p>当变量被声明为可空类型后，并不能像非空变量那样被调用。可空类型String？只有使用安全调用符(?.)和非空断言调用符(?)才允许调用其方法。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name: String?=<span class="string">"abc"</span> <span class="comment">//声明一个可以为空的字符串变量name，且是var类型的变量，即后面可以更改其值。</span></span><br><span class="line">name.length    <span class="comment">//以这种形式调用声明的可空变量则是错误的，系统会提示报错</span></span><br><span class="line">name?.length  <span class="comment">//使用安全调用符</span></span><br><span class="line"></span><br><span class="line">name=<span class="literal">null</span>   <span class="comment">//将var可空String变量name赋值为null</span></span><br><span class="line">name?.length <span class="comment">//再次安全调用length方法时，结果将返回null</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>在kotlin中，必须在声明对象时初始化对象的属性。这意味着，当获取类的实例时，立即引用它的任何可访问属性。当调用Fragment#onCreateView之前，Fragment中的View对象尚未准备好进行扩充，所以要推迟View的属性初始化。可以使用 lateinit 推迟属性初始化。使用lateinit时，应尽快初始化属性。</p>
 <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginFragment</span> : <span class="type">Fragment</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> usernameEditText: EditText</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> passwordEditText: EditText</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> loginButton: Button</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> statusTextView: TextView</span><br><span class="line"></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onViewCreated</span><span class="params">(view: <span class="type">View</span>, savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">            <span class="keyword">super</span>.onViewCreated(view, savedInstanceState)</span><br><span class="line"></span><br><span class="line">            usernameEditText = view.findViewById(R.id.username_edit_text)</span><br><span class="line">            passwordEditText = view.findViewById(R.id.password_edit_text)</span><br><span class="line">            loginButton = view.findViewById(R.id.login_button)</span><br><span class="line">            statusTextView = view.findViewById(R.id.status_text_view)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
@@ -287,5 +292,53 @@
       <tags>
         <tag>Android</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>kotlin扩展函数与扩展属性</title>
+    <url>/2020/04/15/kotlin%E6%89%A9%E5%B1%95%E5%87%BD%E6%95%B0%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B1%9E%E6%80%A7/</url>
+    <content><![CDATA[<h1 id="kotlin扩展函数与扩展属性"><a href="#kotlin扩展函数与扩展属性" class="headerlink" title="kotlin扩展函数与扩展属性"></a>kotlin扩展函数与扩展属性</h1><a id="more"></a>
+
+<p>(近期在学kotlin和vue希望可以慢慢掌握吧—小小白)</p>
+<p>扩展函数与扩展属性可以在不修改原来类的条件下自定义函数和属性，使它们表现得就像是属于这条个类一样。例如，我们给String类型扩展一个返回字符串最后一个字符的firstChar()函数，然后在main函数中调用。代码十分简洁。(kotlin中使用fun来声明函数)</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> String.<span class="title">lastChar</span><span class="params">()</span></span>:String&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">this</span>.length==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">     &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">this</span>[<span class="keyword">this</span>.length-<span class="number">1</span>].toString()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">ArrayList</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str=<span class="string">"abc"</span></span><br><span class="line">    println(<span class="string">"lastChar: "</span>+str.lastChar())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果非常明显，会打印出 (上例中的this值得就是调用lastChar函数的对象实例):</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">lastChar: c</span><br></pre></td></tr></table></figure>
+
+<p>注：kotlin中println函数是封装了java中的System.out.println()函数。</p>
+]]></content>
+      <categories>
+        <category>kotlin学习</category>
+      </categories>
+      <tags>
+        <tag>kotlin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JQuery-find-函数</title>
+    <url>/2020/04/13/JQuery-find-%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>title: JQuery.find()函数<br>date: 2020-04-13 12:03:08<br>tags: JQuery<br>categories: JQuery<br>copyright: true</p>
+<p>jQuery.find()函数</p>
+<a id="more"></a>
+
+<h2 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h2><p>find()函数用于选取每个匹配元素的符合指定表达式的后代元素，并以JQuery对象的方式返回。这里的表达式包括：选择器(字符串)、DOM元素(Element)、jQuery对象。该函数属于JQuery对象(实例)。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">jQueryObject.find(expr)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>expr</td>
+<td>String/Element/jQuery类型指定的表达式</td>
+</tr>
+</tbody></table>
+<p>find()函数将在当前JQuery对象每个匹配元素的所有后代元素中筛选符合指定表达式的元素。如果expr参数为字符串，则将其视作jQuery选择器，用以表示该选择器所匹配的元素。jQuery1.6新增支持：参数expr可以为DOM元素(Element)或jQuery对象。</p>
+<h2 id="返回值："><a href="#返回值：" class="headerlink" title="返回值："></a>返回值：</h2><p>find()函数的返回值为jQuery类型，返回一个新的jQuery对象，该对象封装了当前jQuery对象匹配元素的所有符合指定选择器的后代元素。</p>
+<p>如果没有匹配的元素，则返回空 的jQuery对象。</p>
+<h2 id="示例-amp-说明："><a href="#示例-amp-说明：" class="headerlink" title="示例&amp;说明："></a>示例&amp;说明：</h2>]]></content>
   </entry>
 </search>
