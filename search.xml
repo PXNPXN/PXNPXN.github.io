@@ -346,4 +346,405 @@
         <tag>jQuery</tag>
       </tags>
   </entry>
+  <entry>
+    <title>kotlin中关键字与修饰符</title>
+    <url>/2020/04/16/kotlin%E4%B8%AD%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6/</url>
+    <content><![CDATA[<p>kotlin中的修饰符关键字主要分为</p>
+<a id="more"></a>
+
+<ul>
+<li>类修饰符</li>
+<li>成员修饰符</li>
+<li>访问权限修饰符</li>
+<li>协变逆变修饰符</li>
+<li>函数修饰符</li>
+<li>属性修饰符</li>
+<li>参数修饰符</li>
+<li>具体化类型修饰符</li>
+</ul>
+<p>​                                 表2-1 kotlin中的类修饰符</p>
+<table>
+<thead>
+<tr>
+<th align="center">类修饰符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">abstract</td>
+<td align="center">抽象类</td>
+</tr>
+<tr>
+<td align="center">final</td>
+<td align="center">不可被继承final类</td>
+</tr>
+<tr>
+<td align="center">enum</td>
+<td align="center">枚举类</td>
+</tr>
+<tr>
+<td align="center">open</td>
+<td align="center">可继承open类</td>
+</tr>
+<tr>
+<td align="center">annotation</td>
+<td align="center">注解类</td>
+</tr>
+<tr>
+<td align="center">scaled</td>
+<td align="center">密封类</td>
+</tr>
+<tr>
+<td align="center">data</td>
+<td align="center">数据类</td>
+</tr>
+</tbody></table>
+<p>​                               表2-2  kotlin中的成员修饰符</p>
+<table>
+<thead>
+<tr>
+<th align="center">成员修饰符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">override</td>
+<td align="center">重写函数(方法)</td>
+</tr>
+<tr>
+<td align="center">open</td>
+<td align="center">声明函数可被重写</td>
+</tr>
+<tr>
+<td align="center">final</td>
+<td align="center">声明函数不可被重写</td>
+</tr>
+<tr>
+<td align="center">abstract</td>
+<td align="center">声明函数为抽象函数</td>
+</tr>
+<tr>
+<td align="center">lateinit</td>
+<td align="center">延迟初始化</td>
+</tr>
+</tbody></table>
+<p>​                             表2-3 kotlin中的访问权限修饰符</p>
+<table>
+<thead>
+<tr>
+<th align="center">访问权限修饰符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">private</td>
+<td align="center">私有，仅当前类可访问</td>
+</tr>
+<tr>
+<td align="center">protected</td>
+<td align="center">当前类以及继承该类的可访问</td>
+</tr>
+<tr>
+<td align="center">public</td>
+<td align="center">默认值，对外可访问</td>
+</tr>
+<tr>
+<td align="center">internal</td>
+<td align="center">整个模块内可访问(模块是指一起编译的一组kotlin源代码文件。例如，一个Maven工程，或Gradle工程，通过Ant任务的一次调用编译的一组文件等)</td>
+</tr>
+</tbody></table>
+<p>​                         表2-4  空调连载中的协变逆变修饰符</p>
+<table>
+<thead>
+<tr>
+<th>协变逆变修饰符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>in</td>
+<td>生产者类型修饰符，in T 等价于 ?super T</td>
+</tr>
+<tr>
+<td>out</td>
+<td>消费者类型修饰符，out T 等价于 ?extends T</td>
+</tr>
+</tbody></table>
+<p>​                                       表2-5  kotlin中的函数修饰符</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数修饰符</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">tailrec</td>
+<td align="left">尾递归</td>
+</tr>
+<tr>
+<td align="center">operator</td>
+<td align="left">运算符重载函数</td>
+</tr>
+<tr>
+<td align="center">infix</td>
+<td align="left">中缀函数。例如，给Int定义扩展中缀函数 infix fun Int.shl(x:Int): Int</td>
+</tr>
+<tr>
+<td align="center">inline</td>
+<td align="left">内联函数</td>
+</tr>
+<tr>
+<td align="center">external</td>
+<td align="left">外部函数</td>
+</tr>
+<tr>
+<td align="center">suspend</td>
+<td align="left">挂起协程函数</td>
+</tr>
+</tbody></table>
+<p>​                                              表2-6 kotlin中的属性修饰符</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性修饰符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">const</td>
+<td>常量修饰符</td>
+</tr>
+</tbody></table>
+<p>​                                            表2-7  kotlin中的参数修饰符</p>
+<table>
+<thead>
+<tr>
+<th>参数修饰符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vararg</td>
+<td>变长参数修饰符</td>
+</tr>
+<tr>
+<td>noinline</td>
+<td>不内联参数修饰符，有时，只需要将内联函数的部分参数使用内联Lambda，其他的参数不需要内联，可以使用noinline关键字修饰。例如：inline fun foo(inlined:()-&gt;Unit, noinline notInlined:()-&gt;Unit)</td>
+</tr>
+<tr>
+<td>crossinline</td>
+<td>首先，默认内联函数的Lambda表达式参数是允许非局部返回的，即：     fun outterFun(){                                                                                                                                                        innerFun{                                                                                                                                        retuurn   //支持直接返回outterFun                                                             }}                                                                                                               而使用crossinline限制Lambda表达式直接非局部return返回。                    这样做的原因是：                                                                                          一些内联函数可能通用传给它们的不是直接来自函数体，而是来自另一个执行上下文 的Lambda表达式参数，如来自局部对象或嵌套函数。在这种情况下，该Lambda表达式中也是禁止直播return的。为了标识这种情况，该Lambda表达式参数需要用crossinline修饰符标记。</td>
+</tr>
+</tbody></table>
+<p>​                                               表2-8  kotlin中的具体化类型修饰符</p>
+<table>
+<thead>
+<tr>
+<th align="center">具体化类型修饰符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">reified</td>
+<td align="center">具体化类型参数</td>
+</tr>
+</tbody></table>
+<p>一个crossinline代码实例如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">f</span><span class="params">(<span class="keyword">crossinline</span> body: ()-&gt;<span class="type">Unit</span>)</span></span>&#123;<span class="comment">//内联函数f的body参数是一个Lambda</span></span><br><span class="line">   <span class="keyword">val</span> f=<span class="keyword">object</span>: Runnable&#123;   <span class="comment">//在对象表达式中使用body参数</span></span><br><span class="line">         <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">run</span><span class="params">()</span></span>=body() <span class="comment">//参数标记为crossinline后,return操作将不被允许</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除了上面的修饰符关键字之外，还有一些特殊语义的关键字如表2-9所示。</p>
+<p>​                                              表2-9  kotlin中的关键字</p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>package</td>
+<td>包声明</td>
+</tr>
+<tr>
+<td>as</td>
+<td>类型转换</td>
+</tr>
+<tr>
+<td>typealias</td>
+<td>类型别名</td>
+</tr>
+<tr>
+<td>class</td>
+<td>声明类</td>
+</tr>
+<tr>
+<td>this</td>
+<td>当前对象引用</td>
+</tr>
+<tr>
+<td>super</td>
+<td>父亲对象引用</td>
+</tr>
+<tr>
+<td>val</td>
+<td>声明不可变变量</td>
+</tr>
+<tr>
+<td>var</td>
+<td>声明可变变量</td>
+</tr>
+<tr>
+<td>fun</td>
+<td>声明函数</td>
+</tr>
+<tr>
+<td>for</td>
+<td>for循环</td>
+</tr>
+<tr>
+<td>null</td>
+<td>特殊值null</td>
+</tr>
+<tr>
+<td>true</td>
+<td>真值</td>
+</tr>
+<tr>
+<td>false</td>
+<td>假值</td>
+</tr>
+<tr>
+<td>is</td>
+<td>类型判断</td>
+</tr>
+<tr>
+<td>throw</td>
+<td>抛出异常</td>
+</tr>
+<tr>
+<td>return</td>
+<td>返回值</td>
+</tr>
+<tr>
+<td>break</td>
+<td>跳出循环体</td>
+</tr>
+<tr>
+<td>continue</td>
+<td>继续下一次循环</td>
+</tr>
+<tr>
+<td>object</td>
+<td>单例类声明</td>
+</tr>
+<tr>
+<td>if</td>
+<td>逻辑判断if</td>
+</tr>
+<tr>
+<td>else</td>
+<td>逻辑判断，结合if使用</td>
+</tr>
+<tr>
+<td>while</td>
+<td>while循环</td>
+</tr>
+<tr>
+<td>do</td>
+<td>do循环</td>
+</tr>
+<tr>
+<td>when</td>
+<td>条件判断</td>
+</tr>
+<tr>
+<td>interface</td>
+<td>接口声明</td>
+</tr>
+<tr>
+<td>file</td>
+<td>文件</td>
+</tr>
+<tr>
+<td>field</td>
+<td>成员</td>
+</tr>
+<tr>
+<td>property</td>
+<td>属性</td>
+</tr>
+<tr>
+<td>receiver</td>
+<td>接收者</td>
+</tr>
+<tr>
+<td>param</td>
+<td>参数</td>
+</tr>
+<tr>
+<td>setparam</td>
+<td>设置参数</td>
+</tr>
+<tr>
+<td>delegate</td>
+<td>委托</td>
+</tr>
+<tr>
+<td>import</td>
+<td>导入包</td>
+</tr>
+<tr>
+<td>where</td>
+<td>where条件</td>
+</tr>
+<tr>
+<td>by</td>
+<td>委托类或属性</td>
+</tr>
+<tr>
+<td>get</td>
+<td>get函数</td>
+</tr>
+<tr>
+<td>set</td>
+<td>set函数</td>
+</tr>
+<tr>
+<td>constructor</td>
+<td>构造函数</td>
+</tr>
+<tr>
+<td>init</td>
+<td>初始化代码块</td>
+</tr>
+<tr>
+<td>try</td>
+<td>异常捕获</td>
+</tr>
+<tr>
+<td>catch</td>
+<td>异常捕获，结合try使用</td>
+</tr>
+<tr>
+<td>finally</td>
+<td>异常最终执行代码块</td>
+</tr>
+<tr>
+<td>dynamic</td>
+<td>动态的</td>
+</tr>
+<tr>
+<td>typeof</td>
+<td>类型定义，预留用</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>kotlin</category>
+      </categories>
+      <tags>
+        <tag>kotlin</tag>
+      </tags>
+  </entry>
 </search>
