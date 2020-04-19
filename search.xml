@@ -812,4 +812,376 @@
         <tag>kotlin</tag>
       </tags>
   </entry>
+  <entry>
+    <title>高等数学证明有界无界</title>
+    <url>/2020/04/19/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E%E6%9C%89%E7%95%8C%E6%97%A0%E7%95%8C/</url>
+    <content><![CDATA[<p>高等数学证明有界无界</p>
+<a id="more"></a>
+
+<p>问题：证明函数f(x)= 1/x²在(0,1)上无界。</p>
+<ol>
+<li><p>“有界” 定义(注意有界与区间有关)</p>
+<p>存在M&gt;0，使得对任意的x∈D，都有 |f(x)| ≤ M.</p>
+</li>
+<li><p>到“无界”定义，即否定“有界”</p>
+<p>对任意M&gt;0(无论多大)，存在xm属于D，使得 |f(xm)| &gt; M</p>
+</li>
+<li><p>回到问题，梳理思路：</p>
+<p>要证明f(x)在(0,1)上无界，按“无界” 定义</p>
+<p>对任意M&gt;0，要找到一个满足的 |f(x)|&gt;M的x∈(0,1)</p>
+<p>即找到一个满足1/x²&gt; M 的x∈(0,1)</p>
+<p>即找到一个满足 <img src="file:///C:%5CUsers%5CPXN%5CAppData%5CLocal%5CTemp%5Cksohtml8648%5Cwps2.png" alt="img"> 的x∈(0,1)</p>
+<p>取<img src="file:///C:%5CUsers%5CPXN%5CAppData%5CLocal%5CTemp%5Cksohtml8648%5Cwps1.png" alt="img">)即可(不唯一)</p>
+</li>
+<li><p>解题过程：</p>
+<p>对任意的M&gt;1/4 (无论多大)，都存在<img src="file:///C:%5CUsers%5CPXN%5CAppData%5CLocal%5CTemp%5Cksohtml8648%5Cwps3.png" alt="img"></p>
+<p>使得<img src="file:///C:%5CUsers%5CPXN%5CAppData%5CLocal%5CTemp%5Cksohtml8648%5Cwps4.png" alt="img"></p>
+</li>
+</ol>
+<p>   故f(x)在(0,1)上无界。</p>
+<p>   摘录<a href="https://zhuanlan.zhihu.com/p/29552253" target="_blank" rel="noopener">高数有界无界</a></p>
+<p>$$</p>
+<p>$$</p>
+]]></content>
+      <categories>
+        <category>高数学习</category>
+      </categories>
+      <tags>
+        <tag>高数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>kotlin操作符与重载</title>
+    <url>/2020/04/18/kotlin%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%B8%8E%E9%87%8D%E8%BD%BD/</url>
+    <content><![CDATA[<h1 id="Kotlin操作与重载"><a href="#Kotlin操作与重载" class="headerlink" title="Kotlin操作与重载"></a>Kotlin操作与重载</h1><a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th align="center">优先级</th>
+<th align="left">标题</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">最高级</td>
+<td align="left">后缀(Postfix)</td>
+<td>++，–，.，?.，？</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">前缀(Prefix)</td>
+<td>-，+，++，–，！，labelDefinition@</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">右手类型运算(Type RHS，right-hand side class type (RHS))</td>
+<td>:，as，as?</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">乘除取余(Multiplicative)</td>
+<td>*，/，%</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">加减(Additive)</td>
+<td>+，-</td>
+</tr>
+<tr>
+<td align="center">(优先级往下依次递减)</td>
+<td align="left">区间范围(Range)</td>
+<td>..</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">Infix 函数</td>
+<td>例如，给Int定义扩展 infix fun Int.shl(x:Int):Int{…}，这样调用      1 shl 2，等同于1.shl(2)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">Elvis操作符</td>
+<td>?:</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">命名检查符(Named checks)</td>
+<td>in，!in，is，!is</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">比较大小(Comparison)</td>
+<td>&lt;，&gt;，&lt;=，&gt;=</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">相等性判断(Equality)</td>
+<td>==，!=，===，!==</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">与(Conjunction)</td>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">或(Disjunction)</td>
+<td>||</td>
+</tr>
+<tr>
+<td align="center">最低</td>
+<td align="left">赋值(Assignment)</td>
+<td>=，+=，-=，*=，/=，%=</td>
+</tr>
+</tbody></table>
+<p>kotlin重载操作符的函数需要使用operator修饰符标记，中缀操作符函数使用infix修饰符标记。</p>
+<h2 id="1-1-一元操作符"><a href="#1-1-一元操作符" class="headerlink" title="1.1 一元操作符"></a>1.1 一元操作符</h2><p>一元操作符有前缀操作符、递增和递减操作符等。</p>
+<h3 id="1-1-1-前缀操作符"><a href="#1-1-1-前缀操作符" class="headerlink" title="1.1.1 前缀操作符"></a>1.1.1 前缀操作符</h3><p>前缀操作符放在操作数的前面，分别如表所示。</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">翻译为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+a</td>
+<td align="center">a.unaryPlus()</td>
+</tr>
+<tr>
+<td align="center">-a</td>
+<td align="center">a.unaryMinus()</td>
+</tr>
+<tr>
+<td align="center">!a</td>
+<td align="center">a.not()</td>
+</tr>
+</tbody></table>
+<p>一下是重载一元减运算符的示例：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span></span>(<span class="keyword">val</span> x:<span class="built_in">Int</span>,<span class="keyword">val</span> y:<span class="built_in">Int</span>)          <span class="comment">//声明数据类Point</span></span><br><span class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> Point.<span class="title">unaryMinus</span><span class="params">()</span></span>=Point(-x,-y)  <span class="comment">//operator修饰符修饰一个重载操作符函数</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testPointUnaryMinus</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">val</span> p=Point(<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">val</span> np=-p                <span class="comment">//直接使用unaryMinus()重载函数操作符"-"</span></span><br><span class="line">    println(np)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">    testPointUnaryMinus()   <span class="comment">//调用函数</span></span><br><span class="line">    <span class="comment">/*输出 Point(x=-1,y=-1)*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-2-递增和递减操作符"><a href="#1-1-2-递增和递减操作符" class="headerlink" title="1.1.2 递增和递减操作符"></a>1.1.2 递增和递减操作符</h3><p>inc()和dec()函数必须返回一个值，它用于赋值给使用++或–操作的变量。前缀和后缀的表达式的返回值是不同的。</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">翻译为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a++</td>
+<td align="center">a.inc()返回值是a</td>
+</tr>
+<tr>
+<td align="center">a–</td>
+<td align="center">a.dec()返回值是a</td>
+</tr>
+<tr>
+<td align="center">_</td>
+<td align="center">a.inc()返回值是a+1</td>
+</tr>
+<tr>
+<td align="center">–a</td>
+<td align="center">a.dec()返回值是a-1</td>
+</tr>
+</tbody></table>
+<h2 id="2-二元操作符"><a href="#2-二元操作符" class="headerlink" title="2. 二元操作符"></a>2. 二元操作符</h2><p>Kotlin中的二元操作符有算术运算符、索引访问操作符、调用操作符、计算并赋值操作符、相等与不相等操作符、Elvis操作符、比较操作符、中缀操作符等。</p>
+<h3 id="2-1-算数运算符"><a href="#2-1-算数运算符" class="headerlink" title="2.1 算数运算符"></a>2.1 算数运算符</h3><p>Kotlin算数运算符有加、减、乘、除、取余、范围操作符等。</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">翻译为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a+b</td>
+<td align="center">a.plus(b)</td>
+</tr>
+<tr>
+<td align="center">a-b</td>
+<td align="center">a.minus(b)</td>
+</tr>
+<tr>
+<td align="center">a*b</td>
+<td align="center">a.temes(b)</td>
+</tr>
+<tr>
+<td align="center">a/b</td>
+<td align="center">a.div(b)</td>
+</tr>
+<tr>
+<td align="center">a%b</td>
+<td align="center">a.rem(b)、a.mod(b)</td>
+</tr>
+<tr>
+<td align="center">a..b</td>
+<td align="center">a.rangeTo(b)</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-字符串的”-”运算符重载"><a href="#2-2-字符串的”-”运算符重载" class="headerlink" title="2.2 字符串的”+”运算符重载"></a>2.2 字符串的”+”运算符重载</h3><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="string">""</span>+<span class="number">1</span>    <span class="comment">//String 类型重载了加法操作符</span></span><br><span class="line"><span class="number">1</span>+<span class="string">""</span>   <span class="comment">//Int类型没有重载操作符 plus(other:String) 这种形式会报错</span></span><br><span class="line"><span class="number">1</span>.toString()+<span class="string">""</span>  <span class="comment">//先把Int类型的1转换成String再相加1，显示调用toString()函数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-3-自定义重载的”-”运算符"><a href="#2-3-自定义重载的”-”运算符" class="headerlink" title="2.3 自定义重载的”+”运算符"></a>2.3 自定义重载的”+”运算符</h3><p>下面使用一个计数类Counter重载的”+”运算符来增加index的计数值。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Counter</span></span>(<span class="keyword">var</span> index:<span class="built_in">Int</span>)</span><br><span class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> Counter.<span class="title">plus</span><span class="params">(increment:<span class="type">Int</span>)</span></span>:Counter&#123;</span><br><span class="line">         <span class="keyword">return</span> Counter(index+increment)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testCounterIndexPlus</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">val</span> a=Counter(<span class="number">1</span>)  <span class="comment">//声明一个Counter对象，初始化为1</span></span><br><span class="line">  <span class="keyword">val</span> ap=a+<span class="number">12</span>       <span class="comment">//调用自定义重载"+"运算符</span></span><br><span class="line">  println(ap)       <span class="comment">//打印变量ap</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">    testCounterIndexPlus()   <span class="comment">//调用</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*结果为：Counter(13)*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-4-in操作符"><a href="#2-4-in操作符" class="headerlink" title="2.4 in操作符"></a>2.4 in操作符</h3><p>in操作符等价于contains()函数</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">翻译为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a in b</td>
+<td align="center">b.contains(a)</td>
+</tr>
+<tr>
+<td align="center">a !in b</td>
+<td align="center">!b.contains(a)</td>
+</tr>
+</tbody></table>
+<h3 id="2-5-索引访问操作符"><a href="#2-5-索引访问操作符" class="headerlink" title="2.5  索引访问操作符"></a>2.5  索引访问操作符</h3><p>索引访问操作符方括号[]转换为调用带有适当数量参数的get和set</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">翻译为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a[i]</td>
+<td align="center">a.get(i)</td>
+</tr>
+<tr>
+<td align="center">a[i]=b</td>
+<td align="center">a.set(i,b)</td>
+</tr>
+</tbody></table>
+<h3 id="2-6-调用操作符"><a href="#2-6-调用操作符" class="headerlink" title="2.6 调用操作符"></a>2.6 调用操作符</h3><p>小括号调用符()转换为调用invoke()，同样带参数调用也会转换为invoke()函数中的参数。</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">翻译为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a()</td>
+<td align="center">a.invoke()</td>
+</tr>
+<tr>
+<td align="center">a(i)</td>
+<td align="center">a.invoke(i)</td>
+</tr>
+</tbody></table>
+<h3 id="2-7-计算并赋值操作符"><a href="#2-7-计算并赋值操作符" class="headerlink" title="2.7 计算并赋值操作符"></a>2.7 计算并赋值操作符</h3><p>对于赋值操作，例如a+=b，编译器会试着生成a=a+b的代码(这里包含类型检查：a+b的类型必须是a的子类型)。计算并赋值操作符对应的重载函数</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">翻译为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a+=b</td>
+<td align="center">a.plusAssign(b)</td>
+</tr>
+<tr>
+<td align="center">a-=b</td>
+<td align="center">a.minusAssign(b)</td>
+</tr>
+<tr>
+<td align="center">a*=b</td>
+<td align="center">a.timesAssign(b)</td>
+</tr>
+<tr>
+<td align="center">a/=b</td>
+<td align="center">a.divAssign(b)</td>
+</tr>
+<tr>
+<td align="center">a%=b</td>
+<td align="center">a.modAssign(b)</td>
+</tr>
+</tbody></table>
+<h3 id="2-8-相等与不相等操作符"><a href="#2-8-相等与不相等操作符" class="headerlink" title="2.8 相等与不相等操作符"></a>2.8 相等与不相等操作符</h3><p>Kotlin中 有两种类型的相等性：</p>
+<ul>
+<li><p>引用相等===！==(两个引用指向同一对象)；</p>
+</li>
+<li><p>结构相等==!=(使用equals()判断)</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>翻译为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a==b</td>
+<td>a?.equals(b)?:(b=null)</td>
+</tr>
+<tr>
+<td>a!=b</td>
+<td>!(a?.equals(b)?:(b==null))</td>
+</tr>
+</tbody></table>
+<p>“==” 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选null值。意思是：如果a不是null则调用equals(Any?)函数并返回其值；否则(即a===null)就计算b===null的值并返回。</p>
+<p>注意：===和 !==不可重载</p>
+</li>
+</ul>
+<h3 id="2-9-Elvis-操作符？"><a href="#2-9-Elvis-操作符？" class="headerlink" title="2.9 Elvis 操作符？"></a>2.9 Elvis 操作符？</h3><p>在kotlin中，Elvis操作符特定是跟null进行比较。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">y=x?:<span class="number">0</span>    <span class="comment">//使用Elvis操作符?:</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="keyword">val</span> y=<span class="keyword">if</span>(x!==<span class="literal">null</span>)x <span class="keyword">else</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>主要用来作null安全性检查。</p>
+<p>Kotlin中没有这样的三元符号true?1:0取而代之的是if(true)1 else 0. 而Elvis操作符算是精简版的三元运算符。</p>
+<p>在java中使用的三元运算符的语法通常要重复变量两次。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String name=<span class="string">"Elvis Presley"</span>;</span><br><span class="line">String displayName=(name!=<span class="keyword">null</span>)name:<span class="string">"Unknown"</span> <span class="comment">//java中的三元操作符</span></span><br></pre></td></tr></table></figure>
+
+<p>可以使用Elvis操作符取而代之：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> name=<span class="string">"Elvis Presley"</span></span><br><span class="line"><span class="keyword">val</span> displayName=name?:<span class="string">"Unknown"</span> <span class="comment">//使用Elvis操作符</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> x=<span class="literal">null</span></span><br><span class="line"><span class="keyword">val</span> y=x?:<span class="number">0</span>    <span class="comment">//使用Elvis操作符</span></span><br><span class="line">println(y)    <span class="comment">//等价逻辑：if(x!==null) x else 0，此处x===null, 所以选择else分支，返回0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> x=<span class="literal">false</span></span><br><span class="line"><span class="keyword">val</span> y=x?:<span class="number">0</span></span><br><span class="line">println(y) <span class="comment">//x!==null,所以y的值为x，即为false</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-10-比较操作符"><a href="#2-10-比较操作符" class="headerlink" title="2.10 比较操作符"></a>2.10 比较操作符</h3><p>Kotlin中所有的比较表达式都转换为对compareTo()函数的调用，这个函数需要返回Int值。</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>翻译为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a&gt;b</td>
+<td>a.compareTo(b)&gt;0</td>
+</tr>
+<tr>
+<td>a&lt;b</td>
+<td>a.compareTo(b)&lt;0</td>
+</tr>
+<tr>
+<td>a&gt;=b</td>
+<td>a.compareTo(b)&gt;=0</td>
+</tr>
+<tr>
+<td>a&lt;=b</td>
+<td>a.compareTo(b)&lt;=0</td>
+</tr>
+</tbody></table>
+<h3 id="2-11-用infix函数自定义中缀操作符"><a href="#2-11-用infix函数自定义中缀操作符" class="headerlink" title="2.11 用infix函数自定义中缀操作符"></a>2.11 用infix函数自定义中缀操作符</h3><p>我们可以通过自定义infix函数来实现中缀操作符。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name:String, <span class="keyword">val</span> age:<span class="built_in">Int</span>)  <span class="comment">//声明Person数据类</span></span><br><span class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> Person.<span class="title">grow</span><span class="params">(years:<span class="type">Int</span>)</span></span>:Person&#123; <span class="comment">//声明Person类型的中缀操作符函数</span></span><br><span class="line">    <span class="keyword">return</span> Person(name,age+years)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testPerson</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">val</span> person=Person(<span class="string">"kim"</span>,<span class="number">20</span>)</span><br><span class="line">    println(person.grow(<span class="number">5</span>))  <span class="comment">//直接调用函数</span></span><br><span class="line">    println(person grow <span class="number">5</span>)   <span class="comment">//中缀表达式调用方式</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">    testPerson()</span><br><span class="line">    <span class="comment">/*结果为Person(name=kim,age=25)*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>kotlin</category>
+      </categories>
+      <tags>
+        <tag>kotlin</tag>
+      </tags>
+  </entry>
 </search>
