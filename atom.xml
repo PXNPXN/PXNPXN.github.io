@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-19T09:18:04.793Z</updated>
+  <updated>2020-04-20T04:48:39.169Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2020/04/19/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E%E6%9C%89%E7%95%8C%E6%97%A0%E7%95%8C/"/>
     <id>http://yoursite.com/2020/04/19/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E%E6%9C%89%E7%95%8C%E6%97%A0%E7%95%8C/</id>
     <published>2020-04-19T05:07:17.000Z</published>
-    <updated>2020-04-19T09:18:04.793Z</updated>
+    <updated>2020-04-20T04:48:39.169Z</updated>
     
-    <content type="html"><![CDATA[<p>高等数学证明有界无界</p><a id="more"></a><p>问题：证明函数f(x)= 1/x²在(0,1)上无界。</p><ol><li><p>“有界” 定义(注意有界与区间有关)</p><p>存在M&gt;0，使得对任意的x∈D，都有 |f(x)| ≤ M.</p></li><li><p>到“无界”定义，即否定“有界”</p><p>对任意M&gt;0(无论多大)，存在xm属于D，使得 |f(xm)| &gt; M</p></li><li><p>回到问题，梳理思路：</p><p>要证明f(x)在(0,1)上无界，按“无界” 定义</p><p>对任意M&gt;0，要找到一个满足的 |f(x)|&gt;M的x∈(0,1)</p><p>即找到一个满足1/x²&gt; M 的x∈(0,1)</p><p>即找到一个满足 <img src="file:///C:%5CUsers%5CPXN%5CAppData%5CLocal%5CTemp%5Cksohtml8648%5Cwps2.png" alt="img"> 的x∈(0,1)</p><p>取<img src="file:///C:%5CUsers%5CPXN%5CAppData%5CLocal%5CTemp%5Cksohtml8648%5Cwps1.png" alt="img">)即可(不唯一)</p></li><li><p>解题过程：</p><p>对任意的M&gt;1/4 (无论多大)，都存在<img src="file:///C:%5CUsers%5CPXN%5CAppData%5CLocal%5CTemp%5Cksohtml8648%5Cwps3.png" alt="img"></p><p>使得<img src="file:///C:%5CUsers%5CPXN%5CAppData%5CLocal%5CTemp%5Cksohtml8648%5Cwps4.png" alt="img"></p></li></ol><p>   故f(x)在(0,1)上无界。</p><p>   摘录<a href="https://zhuanlan.zhihu.com/p/29552253" target="_blank" rel="noopener">高数有界无界</a></p><p>$$</p><p>$$</p>]]></content>
+    <content type="html"><![CDATA[<p>高等数学证明有界无界</p><a id="more"></a><p>问题：证明函数f(x)= 1/x²在(0,1)上无界。</p><ol><li><p>“有界” 定义(注意有界与区间有关)</p><p>存在M&gt;0，使得对任意的x∈D，都有 |f(x)| ≤ M.</p></li><li><p>到“无界”定义，即否定“有界”</p><p>对任意M&gt;0(无论多大)，存在xm属于D，使得 |f(xm)| &gt; M</p></li><li><p>回到问题，梳理思路：</p><p>要证明f(x)在(0,1)上无界，按“无界” 定义</p><p>对任意M&gt;0，要找到一个满足的 |f(x)|&gt;M的x∈(0,1)</p><p>即找到一个满足1/x²&gt; M 的x∈(0,1)</p><p>即找到一个满足 <img src="https://s1.ax1x.com/2020/04/20/JQUab6.png" alt="img"> 的x∈(0,1)</p><p>取<img src="https://s1.ax1x.com/2020/04/20/JQNEOx.png" alt="img">)即可(不唯一)</p></li><li><p>解题过程：</p><p>对任意的M&gt;1/4 (无论多大)，都存在<img src="https://s1.ax1x.com/2020/04/20/JQUT2j.png" alt="img"></p><p>使得<img src="https://s1.ax1x.com/2020/04/20/JQULq0.png" alt="img"></p></li></ol><p>   故f(x)在(0,1)上无界。</p><p>   摘录<a href="https://zhuanlan.zhihu.com/p/29552253" target="_blank" rel="noopener">高数有界无界</a></p>]]></content>
     
     <summary type="html">
     
