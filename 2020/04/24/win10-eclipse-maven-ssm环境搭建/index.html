@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="[object Object]">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="win10+eclipse+maven+ssm环境搭建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="win10+eclipse+maven+ssm环境搭建">
+<meta property="og:url" content="http://yoursite.com/2020/04/24/win10-eclipse-maven-ssm%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="Netty">
+<meta property="og:description" content="win10+eclipse+maven+ssm环境搭建">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/24/Jrrql6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/24/JryKVe.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/24/JrsrnO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/Jsgr1s.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/Js2DUO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JsR9G4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/Jsh9JS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/Jsh6TP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JsI7TI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JsdhQS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JyfzNV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JyhPc4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JsDVyT.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JsrQHg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JyNL38.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JydwjS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JyDjJA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JyygZ8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JygNZV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/Jy2bc9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JyRPcd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/Jy58tP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/Jy5OnH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/Jy7uCt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/Jy7fxK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/JyHRoj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/J6AeOg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/J6VYdJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/25/J6njN4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/26/J6us54.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/26/J6Ms39.png">
+<meta property="article:published_time" content="2020-04-24T12:22:34.000Z">
+<meta property="article:modified_time" content="2020-04-25T16:40:12.093Z">
+<meta property="article:author" content="风铃">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/24/Jrrql6.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/24/win10-eclipse-maven-ssm%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>win10+eclipse+maven+ssm环境搭建 | Netty</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Netty" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a href="https://github.com/PXNPXN" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Netty</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">helloword</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/24/win10-eclipse-maven-ssm%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="风铃">
+      <meta itemprop="description" content="书到用时方恨少">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Netty">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          win10+eclipse+maven+ssm环境搭建
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-24 20:22:34" itemprop="dateCreated datePublished" datetime="2020-04-24T20:22:34+08:00">2020-04-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-26 00:40:12" itemprop="dateModified" datetime="2020-04-26T00:40:12+08:00">2020-04-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/04/24/win10-eclipse-maven-ssm%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="post-meta-item leancloud_visitors" data-flag-title="win10+eclipse+maven+ssm环境搭建" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="win10-eclipse-maven-ssm环境搭建"><a href="#win10-eclipse-maven-ssm环境搭建" class="headerlink" title="win10+eclipse+maven+ssm环境搭建"></a>win10+eclipse+maven+ssm环境搭建</h1><a id="more"></a>
+
+<h2 id="1-安装JDK"><a href="#1-安装JDK" class="headerlink" title="1.安装JDK"></a>1.安装JDK</h2><p><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">下载JDK</a></p>
+<p>注：JDK比较稳定的还是JDK8，按照自己的系统选择就好，将JDK安装入一个空目录文件夹下</p>
+<p>接下来，配置JDK 的环境变量</p>
+<ol>
+<li><p>创建系统变量JAVA_HOME</p>
+<p><img src="https://s1.ax1x.com/2020/04/24/Jrrql6.png" alt="img"></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>引用JAVA_HOME变量，添加lib的路径和tool.jar文件的路径</p>
+<p><img src="https://s1.ax1x.com/2020/04/24/JryKVe.png" alt="img"></p>
+</li>
+</ol>
+<ol start="3">
+<li><p>将JDK中的bin文件的路径添加至系统Path中</p>
+<img src="https://s1.ax1x.com/2020/04/24/JrsrnO.png" alt="img" style="zoom: 200%;" />
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>测试JDK是否安装成功，win+R输入cmd，然后在cmd中输入 java  命令，若是有java的用法提示，则表明安装成功，否则安装失败。</p>
+<hr>
+</li>
+</ol>
+<h2 id="2-安装Eclipse"><a href="#2-安装Eclipse" class="headerlink" title="2. 安装Eclipse"></a>2. 安装Eclipse</h2><p>   <a href="https://www.eclipse.org/downloads/" target="_blank" rel="noopener">下载Eclipse</a></p>
+<p>   下载完成后，打开eclipse-ins-win64.exe文件</p>
+<p>   选择Eclipse IDE for Java EE Developers，直至完成</p>
+<hr>
+<h2 id="3-安装Maven"><a href="#3-安装Maven" class="headerlink" title="3. 安装Maven"></a>3. 安装Maven</h2><p>   <a href="http://maven.apache.org/download.cgi#" target="_blank" rel="noopener">下载Maven</a></p>
+<p>   <img src="https://s1.ax1x.com/2020/04/25/Jsgr1s.png" alt="Download_Maven"></p>
+<p>   如上图，可以选择zip压缩包的安装形式</p>
+<h3 id="3-1-Maven环境变量的配置"><a href="#3-1-Maven环境变量的配置" class="headerlink" title="3.1  Maven环境变量的配置"></a>3.1  Maven环境变量的配置</h3><p>   win10-&gt;找到此电脑-&gt;右键-&gt;属性-&gt;高级系统设置-&gt;环境变量</p>
+<p>   在系统变量中，配置Maven环境</p>
+<ul>
+<li><p>新增系统变量MAVEN_HOME</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/Js2DUO.png" alt="MAVEN_HOME"></p>
+<p>注：变量值为bin目录的上级目录</p>
+</li>
+<li><p>在Path中追加：%MAVEN_HOME%\bin</p>
+</li>
+<li><p>win+R打开cmd窗口输入：mvn -v, 如果如下图所示则说明maven配置成功</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JsR9G4.png" alt="cmd_maven"></p>
+</li>
+</ul>
+<h2 id="3-2-Maven仓库-Repository-设置"><a href="#3-2-Maven仓库-Repository-设置" class="headerlink" title="3.2 Maven仓库(Repository)设置"></a>3.2 Maven仓库(Repository)设置</h2><p>   Maven的仓库有三类，简单来说三个仓库的关系：</p>
+<p>   <img src="https://s1.ax1x.com/2020/04/25/Jsh9JS.png" alt="maven_repertory"></p>
+<h4 id="3-2-1-编辑setting-xml文件，maven仓库位置在下图"><a href="#3-2-1-编辑setting-xml文件，maven仓库位置在下图" class="headerlink" title="3.2.1 编辑setting.xml文件，maven仓库位置在下图"></a>3.2.1 编辑setting.xml文件，maven仓库位置在下图</h4><p>   <img src="https://s1.ax1x.com/2020/04/25/Jsh6TP.png" alt=""></p>
+<ul>
+<li><p>当直接访问maven公共仓库的速度会比较慢，所以这里推荐使用仓库镜像，这里使用阿里的maven仓库，在settings.xml文件中找到<mirrors>节点(添加镜像仓库)</p>
+</li>
+<li><p>在<mirrors>节点中添加如下代码(请添加到该节点原有注释之下)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找到<localRepository>节点(该节点被注释掉了，直接在注释下方自己重新添加该节点并添加仓库路径)，加入以下内容(添加本地仓库)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>E:\SoftTool\Maven\maven_repo\localrepo<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>添加代码后如下图：</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JsI7TI.png" alt="localRepository"></p>
+</li>
+<li><p>找到<profile>节点，加入如下内容(将默认JDK1.4设置为1.8)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h2 id="4-安装Tomcat"><a href="#4-安装Tomcat" class="headerlink" title="4. 安装Tomcat"></a>4. 安装Tomcat</h2><p>   <a href="https://tomcat.apache.org/download-90.cgi" target="_blank" rel="noopener">下载Tomcat</a></p>
+<p>   <img src="https://s1.ax1x.com/2020/04/25/JsdhQS.png" alt="img"></p>
+<p>   按照上图选择合适的版本和系统配置下载</p>
+<h3 id="4-1-环境变量的配置"><a href="#4-1-环境变量的配置" class="headerlink" title="4.1 环境变量的配置"></a>4.1 环境变量的配置</h3><p>   win10-&gt;找到此电脑-&gt;右键-&gt;属性-&gt;高级系统设置-&gt;环境变量</p>
+<p>   然后在系统变量这一栏里，配置Tomcat的环境变量</p>
+<ul>
+<li><p>新建CATALINA_BASE变量</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JyfzNV.png" alt="Tomcat"></p>
+<p>注：其中变量名必须为CATALINA_BASE，否则Tomcat会找不到配置的环境变量。而变量值则是安装的Tomcat文件中bin目录的上级目录。</p>
+</li>
+</ul>
+<ul>
+<li><p>新建CATALINA_HOME变量</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JyhPc4.png" alt="Tomcat"></p>
+</li>
+</ul>
+<ul>
+<li><p>找到Path变量，点击编辑，添加如下</p>
+<img src="https://s1.ax1x.com/2020/04/25/JsDVyT.png" style="zoom:200%;" />
+
+
+
+</li>
+</ul>
+<h3 id="4-3-验证Tomcat是否配置成功"><a href="#4-3-验证Tomcat是否配置成功" class="headerlink" title="4.3  验证Tomcat是否配置成功"></a>4.3  验证Tomcat是否配置成功</h3><p>   启动Tomcat服务的方式有很多种，这里值列举两种：</p>
+<ul>
+<li><p>方式一</p>
+<ol>
+<li><p>win+R搜索输入cmd，打开命令提示符窗口：</p>
+</li>
+<li><p>直接输入startup，按下Enter键，则会弹出一个标题栏为”Tomcat”的窗口，并出现如下图所示的信息。</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JsrQHg.png" alt=""></p>
+<p>注：先不要关闭黑窗口，否则等于Tomcat也关了，因为随后会打开浏览器验证</p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code>3.  在浏览器的地址栏中输入：[http://localhost:8080/](http://localhost:8080/) 或[http://127.0.0.1:8080/](http://127.0.0.1:8080/)
+
+   如果能够显示下图界面，则说明Tomcat配置成功
+
+   ![Test_browser_Tomcat](https://s1.ax1x.com/2020/04/25/JyhQjH.png)
+
+
+
+   * 方式二
+
+     1. 找到Tomcat的安装目录下的bin文件
+
+     2. 打开bin文件，找到startup.bat，双击打开该文件，会弹出跟方式一相同的Tomcat窗口(弹窗最后一句话：Server startup in 533 ms，就是说服务启动耗时533毫秒)
+
+        如果想关闭Tomcat，那么只要双击bin文件下的shutdown.bat就可以了</code></pre><h3 id="4-4-Tomcat的详细配置-端口号，部署web应用，配置数据源"><a href="#4-4-Tomcat的详细配置-端口号，部署web应用，配置数据源" class="headerlink" title="4.4 Tomcat的详细配置(端口号，部署web应用，配置数据源)"></a>4.4 Tomcat的详细配置(端口号，部署web应用，配置数据源)</h3><p><a href="https://www.jb51.net/article/140516.htm" target="_blank" rel="noopener">Tomcat详细配置-&gt;脚本之家</a></p>
+<hr>
+<h2 id="5-Eclipse整合Maven"><a href="#5-Eclipse整合Maven" class="headerlink" title="5.  Eclipse整合Maven"></a>5.  Eclipse整合Maven</h2><p>打开Eclipse-&gt;Window-&gt;Preferences</p>
+<p>设置顺序如下：</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JyNL38.png" alt=""></p>
+<p>接着选择Installations节点-&gt;Add-&gt;Directory-&gt;Finish-&gt;勾选maven</p>
+<p>Installation name可以自行修改</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JydwjS.png" alt=""></p>
+<h2 id="6-使用Maven创建SSM项目"><a href="#6-使用Maven创建SSM项目" class="headerlink" title="6. 使用Maven创建SSM项目"></a>6. 使用Maven创建SSM项目</h2><h3 id="6-1-File-gt-new-gt-project-gt-maven-gt-maven-project"><a href="#6-1-File-gt-new-gt-project-gt-maven-gt-maven-project" class="headerlink" title="6.1  File-&gt;new-&gt;project-&gt;maven-&gt;maven-project"></a>6.1  File-&gt;new-&gt;project-&gt;maven-&gt;maven-project</h3><p>Filter选项选择web类型，(我的话有点慢，过了一阵子才有了Group Id，而且点击Configure后，在搜索框中输入web后，才显示出Group IP)</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JyDjJA.png" alt=""></p>
+<h3 id="6-2-填写GroupID、ArtifatID"><a href="#6-2-填写GroupID、ArtifatID" class="headerlink" title="6.2 填写GroupID、ArtifatID"></a>6.2 填写GroupID、ArtifatID</h3><ul>
+<li><p>Group ID：相当于一个组织</p>
+</li>
+<li><p>Artifact ID：相当于这个组织下的一个具体项目</p>
+</li>
+<li><p>Packege：根据Group ID和Artifact ID生成一个默认的名称</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JyygZ8.png" alt=""></p>
+</li>
+</ul>
+<p>点击Finish后，会在本地仓库中创建出如下图所示的文件</p>
+<img src="https://s1.ax1x.com/2020/04/25/JygNZV.png"  />
+
+
+
+<h3 id="6-3-创建出的maven项目如下"><a href="#6-3-创建出的maven项目如下" class="headerlink" title="6.3 创建出的maven项目如下"></a>6.3 创建出的maven项目如下</h3><p><img src="https://s1.ax1x.com/2020/04/25/Jy2bc9.png" alt="project-structure"></p>
+<p>创建ssm项目报错如下：</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JyRPcd.png" alt=""></p>
+<h3 id="6-4-在eclipse中设置Server为Tomcat"><a href="#6-4-在eclipse中设置Server为Tomcat" class="headerlink" title="6.4 在eclipse中设置Server为Tomcat"></a>6.4 在eclipse中设置Server为Tomcat</h3><p>Eclipse-&gt;Window-&gt;preferences-&gt;Server-&gt;Runtime Enviroments-&gt;Add-&gt;在弹框type filter text处选择对应的Tomcat版本(这里选v9.0)-&gt;Next</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/Jy58tP.png" alt=""></p>
+<p>接着找到本地配置好的Tomcat，然后在JRE设置安装JDK的jre</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/Jy5OnH.png" alt=""></p>
+<h3 id="6-5-在工程上右键，查看工程属性-properties-，找到Java-Build-Path，添加Server-Runtime为Tomcat"><a href="#6-5-在工程上右键，查看工程属性-properties-，找到Java-Build-Path，添加Server-Runtime为Tomcat" class="headerlink" title="6.5 在工程上右键，查看工程属性(properties)，找到Java Build Path，添加Server Runtime为Tomcat"></a>6.5 在工程上右键，查看工程属性(properties)，找到Java Build Path，添加Server Runtime为Tomcat</h3><p><img src="https://s1.ax1x.com/2020/04/25/Jy7uCt.png" alt=""></p>
+<p>点击Finish，并Apply</p>
+<img src="https://s1.ax1x.com/2020/04/25/Jy7fxK.png"  />
+
+<p>工程错误消失，但是jdk版本显示还是1.7</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/JyHRoj.png" alt=""></p>
+<h3 id="6-6-还是在项目上右键，查看项目信息-properties-，选择project-facets"><a href="#6-6-还是在项目上右键，查看项目信息-properties-，选择project-facets" class="headerlink" title="6.6 还是在项目上右键，查看项目信息(properties)，选择project  facets"></a>6.6 还是在项目上右键，查看项目信息(properties)，选择project  facets</h3><p><img src="https://s1.ax1x.com/2020/04/25/J6AeOg.png" alt=""></p>
+<p>默认的Dynamic Web Module为2.3，使用Tomcat v9，需要修改为4.0。这里无法直接选择修改成4.0，需要以下几个步骤设置：</p>
+<ol>
+<li><p>maven工程setting下org.eclipse.wst.common.project.facet.core.xml</p>
+<p><img src="https://s1.ax1x.com/2020/04/25/J6VYdJ.png" alt=""></p>
+<p>修改后为(主要修改了java和java.web的版本号)：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">faceted-project</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">fixed</span> <span class="attr">facet</span>=<span class="string">"wst.jsdt.web"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">installed</span> <span class="attr">facet</span>=<span class="string">"java"</span> <span class="attr">version</span>=<span class="string">"1.8"</span>/&gt;</span> <span class="comment">&lt;!--JDK版本为1.8--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">installed</span> <span class="attr">facet</span>=<span class="string">"jst.web"</span> <span class="attr">version</span>=<span class="string">"4.0"</span>/&gt;</span>  <span class="comment">&lt;!--将2.3改为4.0，搭配Tomcat9--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">installed</span> <span class="attr">facet</span>=<span class="string">"wst.jsdt.web"</span> <span class="attr">version</span>=<span class="string">"1.0"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">faceted-project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>将maven工程目录\src\main\webapp\WEB-INF中的web.xml文件修改为(将整个文件修改)：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">version</span>=<span class="string">"4.0"</span> <span class="attr">metadata-complete</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>maven工程目录下的pom.xml文件中修改build节点，添加剂如下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>ssm<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--添加--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--在project节点下添加如下代码--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 另外一种激活方式 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li>修改后，在项目上右键，点击Maven属性下的Update Project</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/04/25/J6njN4.png" alt=""></p>
+<p>选择该项目进行更新，如果怕不能强制更新，可以勾选Force Update of Snapshots/Releases</p>
+<p><img src="https://s1.ax1x.com/2020/04/26/J6us54.png" alt=""></p>
+<p>右下角更新进度，大约几分钟左右</p>
+<ol start="5">
+<li><p>更新maven项目(右键-&gt;maven-&gt;updateproject)，再观察项目属性(项目右键-&gt;properties-&gt;project Facets)，Module已经变为4.0</p>
+<p><img src="https://s1.ax1x.com/2020/04/26/J6Ms39.png" alt=""></p>
+</li>
+</ol>
+<p>若更新maven项目后，报错建议先检查以上的几个步骤</p>
+<ol start="6">
+<li><p>下载ssm框架就所需的jar包</p>
+<p>修改maven工程目录下的pom.xml文件：</p>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.temptation<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ssm<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>ssm Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- FIXME change it to the project's website --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://www.example.com<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- Spring版本号 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring.version</span>&gt;</span>4.3.8.RELEASE<span class="tag">&lt;/<span class="name">spring.version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- Spring相关包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-tx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="comment">&lt;!-- AOP相关包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjrt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- MyBatis相关包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- MySQL相关包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.26<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 数据库连接池 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.20<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Spring集成MyBatis --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- JSP标准标签库 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">   <span class="comment">&lt;!-- 日志相关包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.21<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!--单元测试相关包--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>ssm<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--添加--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 另外一种激活方式 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>直接复制上述内容至pom.xml文件，也可以根据需求添加一下jar，保存该文件后，右键点击项目后选中refresh，可以看到相关jar包被下载至本地仓库。</p>
+<h3 id="6-7-完善项目结构"><a href="#6-7-完善项目结构" class="headerlink" title="6.7  完善项目结构"></a>6.7  完善项目结构</h3><p>由于服务端maven项目的标准结构有4个子包：src/main/java、src/main/resources、src/test/java、src/test/resources，这里缺少了src/test/resources,所以手动补上。</p>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2020/04/24/win10-eclipse-maven-ssm%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">win10+eclipse+maven+ssm环境搭建</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 风铃 的个人博客">风铃</a></p>
+  <p><span>发布时间:</span>2020年04月24日 - 20:22</p>
+  <p><span>最后更新:</span>2020年04月26日 - 00:40</p>
+  <p><span>原始链接:</span><a href="/2020/04/24/win10-eclipse-maven-ssm%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="win10+eclipse+maven+ssm环境搭建">http://yoursite.com/2020/04/24/win10-eclipse-maven-ssm%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/04/24/win10-eclipse-maven-ssm%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+	});
+    });
+</script>
+
+
+          
+    </div>
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/23/Kotlin%E5%87%BD%E6%95%B0%E4%B8%8E%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="prev" title="Kotlin函数与函数式编程">
+      <i class="fa fa-chevron-left"></i> Kotlin函数与函数式编程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/28/spring%E4%B9%8BIoC-%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC-%E5%92%8CDI-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/" rel="next" title="spring之IoC(控制反转)和DI(依赖注入)">
+      spring之IoC(控制反转)和DI(依赖注入) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#win10-eclipse-maven-ssm环境搭建"><span class="nav-number">1.</span> <span class="nav-text">win10+eclipse+maven+ssm环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装JDK"><span class="nav-number">1.1.</span> <span class="nav-text">1.安装JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装Eclipse"><span class="nav-number">1.2.</span> <span class="nav-text">2. 安装Eclipse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装Maven"><span class="nav-number">1.3.</span> <span class="nav-text">3. 安装Maven</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Maven环境变量的配置"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1  Maven环境变量的配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Maven仓库-Repository-设置"><span class="nav-number">1.4.</span> <span class="nav-text">3.2 Maven仓库(Repository)设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-编辑setting-xml文件，maven仓库位置在下图"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">3.2.1 编辑setting.xml文件，maven仓库位置在下图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装Tomcat"><span class="nav-number">1.5.</span> <span class="nav-text">4. 安装Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-环境变量的配置"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1 环境变量的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-验证Tomcat是否配置成功"><span class="nav-number">1.5.2.</span> <span class="nav-text">4.3  验证Tomcat是否配置成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Tomcat的详细配置-端口号，部署web应用，配置数据源"><span class="nav-number">1.5.3.</span> <span class="nav-text">4.4 Tomcat的详细配置(端口号，部署web应用，配置数据源)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Eclipse整合Maven"><span class="nav-number">1.6.</span> <span class="nav-text">5.  Eclipse整合Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-使用Maven创建SSM项目"><span class="nav-number">1.7.</span> <span class="nav-text">6. 使用Maven创建SSM项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-File-gt-new-gt-project-gt-maven-gt-maven-project"><span class="nav-number">1.7.1.</span> <span class="nav-text">6.1  File-&gt;new-&gt;project-&gt;maven-&gt;maven-project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-填写GroupID、ArtifatID"><span class="nav-number">1.7.2.</span> <span class="nav-text">6.2 填写GroupID、ArtifatID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-创建出的maven项目如下"><span class="nav-number">1.7.3.</span> <span class="nav-text">6.3 创建出的maven项目如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-在eclipse中设置Server为Tomcat"><span class="nav-number">1.7.4.</span> <span class="nav-text">6.4 在eclipse中设置Server为Tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-在工程上右键，查看工程属性-properties-，找到Java-Build-Path，添加Server-Runtime为Tomcat"><span class="nav-number">1.7.5.</span> <span class="nav-text">6.5 在工程上右键，查看工程属性(properties)，找到Java Build Path，添加Server Runtime为Tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-还是在项目上右键，查看项目信息-properties-，选择project-facets"><span class="nav-number">1.7.6.</span> <span class="nav-text">6.6 还是在项目上右键，查看项目信息(properties)，选择project  facets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-7-完善项目结构"><span class="nav-number">1.7.7.</span> <span class="nav-text">6.7  完善项目结构</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">风铃</p>
+  <div class="site-description" itemprop="description">书到用时方恨少</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/timeline" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;timeline" rel="noopener" target="_blank"><i class="fab fa-studiovinari fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/" title="简书 → https:&#x2F;&#x2F;www.jianshu.com&#x2F;" rel="noopener" target="_blank"><i class="heartbeat fa-fw"></i>简书</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.alloyteam.com/nav/" title="前端导航 → http:&#x2F;&#x2F;www.alloyteam.com&#x2F;nav&#x2F;" rel="noopener" target="_blank"><i class="fab fa-anchor fa-fw"></i>前端导航</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gank.io/post/5e51f4594ae9df8c6555fdc5" title="干货集中营 → https:&#x2F;&#x2F;gank.io&#x2F;post&#x2F;5e51f4594ae9df8c6555fdc5" rel="noopener" target="_blank"><i class="fab fa-canadian-maple-left fa-fw"></i>干货集中营</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">风铃</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"BOllTvvO1bmv2xzmArufPDtv-gzGzoHsz","app_key":"Vg4isoMjyOhN5xKRaVDBUtRT","server_url":null,"security":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.3" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+     <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+     <script type="text/javascript" src="/js/fireworks.js"></script>
+  
+</body>
+</html>
