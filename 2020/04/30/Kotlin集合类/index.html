@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="[object Object]">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Kotlin集合类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin集合类">
+<meta property="og:url" content="http://yoursite.com/2020/04/30/Kotlin%E9%9B%86%E5%90%88%E7%B1%BB/index.html">
+<meta property="og:site_name" content="Netty">
+<meta property="og:description" content="Kotlin集合类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/30/Jq4MGt.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/30/Jq4rsU.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/30/JqoIyV.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/30/JqbkY4.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/30/JqbW7T.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/30/JqO3hF.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/30/JqO2nI.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/30/JqOx4U.jpg">
+<meta property="article:published_time" content="2020-04-30T04:45:54.000Z">
+<meta property="article:modified_time" content="2020-05-01T06:24:38.187Z">
+<meta property="article:author" content="风铃">
+<meta property="article:tag" content="kotlin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/30/Jq4MGt.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/30/Kotlin%E9%9B%86%E5%90%88%E7%B1%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Kotlin集合类 | Netty</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Netty" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a href="https://github.com/PXNPXN" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Netty</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">helloword</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/30/Kotlin%E9%9B%86%E5%90%88%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="风铃">
+      <meta itemprop="description" content="书到用时方恨少">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Netty">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kotlin集合类
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-30 12:45:54" itemprop="dateCreated datePublished" datetime="2020-04-30T12:45:54+08:00">2020-04-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-01 14:24:38" itemprop="dateModified" datetime="2020-05-01T14:24:38+08:00">2020-05-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kotlin/" itemprop="url" rel="index"><span itemprop="name">kotlin</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/04/30/Kotlin%E9%9B%86%E5%90%88%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="Kotlin集合类" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Kotlin集合类"><a href="#Kotlin集合类" class="headerlink" title="Kotlin集合类"></a>Kotlin集合类</h1><a id="more"></a>
+
+<p>在Java类库中有一套相当完整的容器集合类来持有对象。Kotlin没有去重复造轮子(Scala则是自己实现了一套集合类框架)，而是在Java类库的基础上进行改造和扩展，引入了不可变集合类，同时扩展了大量方便实用的功能，这些功能的API都在Kotlin.collections包下面</p>
+<p>另外，在Kotlin的集合类中不仅仅能持有普通对象，而且能够持有函数类型的变量。例如下面是一个持有两个函数的集合类：</p>
+<p>其中，(Int) -&gt;Boolean 是一个从Int映射到Boolean的函数，而这个时候，我们可以在代码里选择调用哪个函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> funlist:List&lt;(<span class="built_in">Int</span>)-&gt;<span class="built_in">Boolean</span>&gt;=  <span class="comment">//声明一个持有类型为函数(Int) -&gt;Boolean的List</span></span><br><span class="line">listOf(&#123;it-&gt;it%<span class="number">2</span>==<span class="number">0</span>&#125;,   <span class="comment">//第1个函数为&#123;it-&gt;it%2==0&#125;</span></span><br><span class="line">       &#123;it-&gt;it%<span class="number">2</span>==<span class="number">1</span>&#125;)   <span class="comment">//第2个函数为&#123;it-&gt;it%2==1&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">     <span class="keyword">val</span> list=listOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">     list.filter(funlist[<span class="number">0</span>]) <span class="comment">//传入第1个函数funlist[0]，返回[2,4,6]</span></span><br><span class="line">     list.filter(funlist[<span class="number">1</span>]) <span class="comment">//传入第2个函数funlist[1]，返回[1,3,5,7]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1-集合类概述"><a href="#1-集合类概述" class="headerlink" title="1. 集合类概述"></a>1. 集合类概述</h2><p>集合类存放的都是对象的引用，而非对象本身，我们通常说的集合中的对象指的是集合中对象的引用(reference)。</p>
+<p>Kotlin的集合类分为：可变集合类(Mutable)与不可变集合类(Immutable)</p>
+<hr>
+<h3 id="1-1-常用的三种集合类"><a href="#1-1-常用的三种集合类" class="headerlink" title="1.1  常用的三种集合类"></a>1.1  常用的三种集合类</h3><p>集合类主要有3种：List(列表)、Set(集)和Map(映射)。</p>
+<ul>
+<li>List容器中的元素以线性方式存储，集合中可以存放重复对象。列表中的元素是有序地排列。</li>
+<li>Set集容器的元素无序、不重复。</li>
+<li>Map映射中持有的是”键值对” 对象，每个对象都包含一对键值K-V对象。Map映射容器中存储的每个对象都有一个相关的关键字(Key)对象，关键字决定对象在映射中的存储位置。关键字是唯一的。其实关键字本身并不能决定对象的存储位置，它通过散列(hashing)产生一个被称作散列码(hash code)的整数值，这个散列码对应值(Value)的存储位置。</li>
+</ul>
+<p>如果我们从数据结构的本质上来看，其实List中的下标就是Key，只不过Key是有序的Int类型，所以说List也可以说是一种特殊的Map数据结构。而Set也是Key为Int类型，但是Value值是不能重复的特殊Map。</p>
+<p>下面是Kotlin中集合类接口的结构层次：</p>
+<img src="https://s1.ax1x.com/2020/04/30/Jq4MGt.jpg" style="zoom: 33%;" />
+
+<p>其中，各个接口说明如下图：</p>
+<p><img src="https://s1.ax1x.com/2020/04/30/Jq4rsU.jpg" alt=""></p>
+<hr>
+<h3 id="1-2-不可变集合类"><a href="#1-2-不可变集合类" class="headerlink" title="1.2  不可变集合类"></a>1.2  不可变集合类</h3><ul>
+<li>List列表分为只读不可变的List和可变MutableList(可写入、删除数据)。List列表的类型层次结构如下：</li>
+</ul>
+<img src="https://s1.ax1x.com/2020/04/30/JqoIyV.jpg" style="zoom: 50%;" />
+
+
+
+<ul>
+<li>Set集也分为不可变Set和可变MutableSet(可写入、删除数据)。Set集合的类型层次结构如下图：</li>
+</ul>
+<p>  <img src="https://s1.ax1x.com/2020/04/30/JqbkY4.jpg" alt=""></p>
+<ul>
+<li>Kotlin中的Map与List、Set一样，Map也分为只读Map和可变MutableMap(可写入、删除数据)</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/04/30/JqbW7T.jpg" alt=""></p>
+<hr>
+<h3 id="1-3-创建集合类"><a href="#1-3-创建集合类" class="headerlink" title="1.3  创建集合类"></a>1.3  创建集合类</h3><ul>
+<li>不可变集合类的创建</li>
+</ul>
+<p>​       Kotlin中分别使用listOf()、setOf()、mapOf()函数创建不可变的List列表容器、Set容器、Map映射容器；</p>
+<ul>
+<li><p>可变集合类的创建</p>
+<p>使用mutableListOf()、mutableSet()、mutableMapOf()函数来创建可变的MutableList列表容器、MutableSet集容器、MutableMap映射容器</p>
+</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/04/30/JqO3hF.jpg" alt=""></p>
+<p>​                                                                               图7.3.1 创建List</p>
+<p><img src="https://s1.ax1x.com/2020/04/30/JqO2nI.jpg" alt=""></p>
+<p>​                                                                              图7.3.2 创建Set</p>
+<p><img src="https://s1.ax1x.com/2020/04/30/JqOx4U.jpg" alt=""></p>
+<p>​                                                                              图7.3.3 创建Map</p>
+<p>代码如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">mian</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">    <span class="keyword">val</span> list=listOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">    <span class="keyword">val</span> list1=listOf(<span class="string">"a"</span>,<span class="string">"d"</span>,<span class="string">"m"</span>,<span class="string">"i"</span>,<span class="string">"n"</span>)</span><br><span class="line">    <span class="keyword">val</span> mutableList=mutableListOf(<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>)</span><br><span class="line">    mutableList.add(<span class="string">"d"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">val</span> <span class="keyword">set</span>=setOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">    <span class="keyword">val</span> set1= setOf(<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>)</span><br><span class="line">    <span class="keyword">val</span> mutableset=mutableSetOf(<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>)</span><br><span class="line">    mutableset.add(<span class="string">"e"</span>)</span><br><span class="line">    mutableset.remove(<span class="string">"c"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">val</span> map=mapOf(<span class="number">1</span> to <span class="string">"a"</span>,<span class="number">2</span> to <span class="string">"b"</span>,<span class="number">3</span> to <span class="string">"c"</span>)</span><br><span class="line">    <span class="keyword">val</span> mutableMap=mutableMapOf(<span class="number">1</span> to <span class="string">"X"</span>,<span class="number">2</span> to <span class="string">"Y"</span>,<span class="number">3</span> to <span class="string">"Z"</span>)</span><br><span class="line">    mutableMap.<span class="keyword">set</span>(<span class="number">2</span>,<span class="string">"spring"</span>)</span><br><span class="line">    mutableMap.replace(<span class="number">3</span>,<span class="string">"boot"</span>)</span><br><span class="line">    mutableMap.put(<span class="number">4</span>,<span class="string">"C"</span>)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    println(<span class="string">"list="</span>+list)   <span class="comment">//打印 list=[1,2,3,4,5,6,7]</span></span><br><span class="line">    println(<span class="string">"list1=<span class="variable">$list1</span>"</span>)  <span class="comment">//打印 list1=[a,d,m,i,n]</span></span><br><span class="line">    println(<span class="string">"mutableList=<span class="variable">$mutableList</span>"</span>) <span class="comment">//打印  mutableList=[a,b,c,d]</span></span><br><span class="line">    println(<span class="string">"set="</span>+<span class="keyword">set</span>)   <span class="comment">//打印  set=[1,2,3,4,5,6,7]</span></span><br><span class="line">    println(<span class="string">"set1=<span class="variable">$set1</span>"</span>)  <span class="comment">//打印 set1=[a,b,c,d]</span></span><br><span class="line">    println(<span class="string">"mutableset=<span class="variable">$mutableset</span>"</span>)  <span class="comment">//打印 mutableset=[a,b,d,e]</span></span><br><span class="line">    </span><br><span class="line">    println(mutableMap.[<span class="number">2</span>]) <span class="comment">//打印  Y</span></span><br><span class="line">    println(mutableMap.<span class="keyword">get</span>(<span class="number">2</span>)) <span class="comment">//打印 Y   =&gt; println(mutableMap.[2])</span></span><br><span class="line">    println(<span class="string">"map=<span class="variable">$map</span>"</span>)  <span class="comment">//打印  map=[1=a,2=b,3=c]</span></span><br><span class="line">    println(<span class="string">"mutableMap=<span class="variable">$mutableMap</span>"</span>) <span class="comment">//打印 mutableMap=[1=X,2=spring,3=boot,4=C]</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果创建没有元素的空List，使用listOf()即可。不过这个时候，变量的类型不能省略，需要显示声明：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list: List&lt;<span class="built_in">Int</span>&gt; = listOf() <span class="comment">//这样显示声明一个元素类型为Int，并切为空的List是错误的</span></span><br><span class="line"><span class="comment">//原因是Kotlin中变量要是想为空，必须声明为可空变量</span></span><br><span class="line"><span class="keyword">val</span> emptyList: List&lt;<span class="built_in">Int</span>&gt; ? =listOf() <span class="comment">//这样声明才不会报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> emptySet: Set&lt;<span class="built_in">Int</span>&gt; ? =setOf()   <span class="comment">//显示声明Set的元素类型为Int</span></span><br><span class="line"><span class="keyword">val</span> emptyMap: Map&lt;<span class="built_in">Int</span>,String&gt; ? =mapOf() <span class="comment">//显示声明Map的元素类型为Int，String键值对</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">in</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">listOf</span><span class="params">()</span></span>: List&lt;T&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里的 fun <T> 泛型参数T编译器无法推断出来。setOf()、mapOf()分析同理。</p>
+<hr>
+<h3 id="1-4-遍历集合中的元素"><a href="#1-4-遍历集合中的元素" class="headerlink" title="1.4 遍历集合中的元素"></a>1.4 遍历集合中的元素</h3><p>List、Set类继承了Iterable接口，里面扩展了forEach函数来迭代遍历元素；同样，Map接口中也扩展了forEach函数来迭代遍历元素。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">list.forEach&#123;             <span class="comment">//List中的forEach</span></span><br><span class="line">  println(it)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">set</span>.forEach&#123;              <span class="comment">//Set中的forEach</span></span><br><span class="line">  println(it)</span><br><span class="line">&#125;</span><br><span class="line">map.forEach&#123;</span><br><span class="line">  println(<span class="string">"k=<span class="subst">$&#123;it.key&#125;</span>,V=<span class="subst">$&#123;it.value&#125;</span>"</span>)  <span class="comment">//Map里面的对象是Map。Entry&lt;K,V&gt;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，forEach()函数签名如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span><span class="type">&lt;T&gt;</span> Iterable<span class="type">&lt;T&gt;</span>.<span class="title">forEach</span><span class="params">(action:(<span class="type">T</span>)-&gt;<span class="type">Unit</span>)</span></span>:<span class="built_in">Unit</span> <span class="comment">//List和Set的forEach()函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;K,V&gt;</span> Map<span class="type">&lt;out K,V&gt;</span>.<span class="title">forEach</span><span class="params">(action:(<span class="type">Map</span>.<span class="type">Entry</span>&lt;<span class="type">K</span>,<span class="type">V</span>&gt;)-&gt;<span class="type">Unit</span>)</span></span>:<span class="built_in">Unit</span></span><br><span class="line"><span class="comment">//Map的forEach()函数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>另外，如果我们想在迭代遍历元素的时候访问index下标，在List和Set中可以使用下面的forEachIndexed函数</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">list.forEachIndexed&#123; index,value-&gt;     <span class="comment">//带下标index来遍历List</span></span><br><span class="line">  println(<span class="string">"list index=<span class="subst">$&#123;index&#125;</span>, value=<span class="subst">$&#123;value&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>.forEachIndexed&#123; index,value-&gt;     <span class="comment">//带下标index来遍历set</span></span><br><span class="line">  println(<span class="string">"set index=<span class="subst">$&#123;index&#125;</span>,value=<span class="subst">$&#123;value&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，第一个参数是index，第2个参数是value。这里的forEachIndexed函数签名如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Iterable<span class="type">&lt;T&gt;</span>.<span class="title">forEachIndexed</span><span class="params">(action:(<span class="type">index</span>:<span class="type">Int</span>,<span class="type">T</span>)-&gt;<span class="type">Unit</span>)</span></span>:<span class="built_in">Unit</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><p>Map的元素是Entry类型，由entries属性特有。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> entries:Set&lt;Entry&lt;K,V&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个Entry类型定义如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Entry</span>&lt;<span class="type">out K,out V</span>&gt;</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">val</span> key:K     <span class="comment">//键值对的Key</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">val</span> Value:V   <span class="comment">//键值对的Value</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以直接访问entries属性获取该Map中的所有键值对的Set。代码实例如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">   <span class="keyword">val</span> map=mapOf(<span class="string">"x"</span> to <span class="number">1</span>,<span class="string">"y"</span> to <span class="number">2</span>,<span class="string">"z"</span> to <span class="number">3</span>)</span><br><span class="line">    println(map)    <span class="comment">//打印结果：&#123;x=1,y=2,z=3&#125;</span></span><br><span class="line">    println(<span class="string">"entries=<span class="subst">$&#123;map.entries&#125;</span>"</span>) <span class="comment">//打印结果：[x=1,y=2,z=3]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以遍历这个Entry的Set了：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">map.entries.forEach(&#123;println(<span class="string">"key="</span>+it.key+<span class="string">" value="</span>+it.value)&#125;)  <span class="comment">//遍历entries中的元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*打印结果：</span></span><br><span class="line"><span class="comment">key=x value=1</span></span><br><span class="line"><span class="comment">key=y value=2</span></span><br><span class="line"><span class="comment">key=z value=3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+</ul>
+<h3 id="1-5-映射函数"><a href="#1-5-映射函数" class="headerlink" title="1.5  映射函数"></a>1.5  映射函数</h3><p>使用map函数，可以把集合中的元素依次使用给定的转换函数进行映射操作，元素映射之后的新值会存入一个新的集合中，并返回这个新集合。</p>
+<p>在List、Set继承Iterable接口和Map接口中，都提供了这个map函数。使用map函数的代码示例如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">   <span class="keyword">val</span> list=listOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">   <span class="keyword">val</span> <span class="keyword">set</span>=setOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">   <span class="keyword">val</span> map=mapOf(<span class="number">1</span> to <span class="string">"a"</span>, <span class="number">2</span> to <span class="string">"b"</span>, <span class="number">3</span> to <span class="string">"c"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//以下都没有使用println函数,因此不会被打印出来</span></span><br><span class="line">    list.map&#123;it*it&#125;  <span class="comment">//map函数对每个元素进行乘方操作，返回[1,4,9,16,25,36,49]</span></span><br><span class="line">    <span class="keyword">set</span>.map&#123;it+<span class="number">1</span>&#125;    <span class="comment">//set函数对每个元素进行加1操作，返回[2,3,4,5,6,7,8]</span></span><br><span class="line">    map.map&#123;it.value+<span class="string">"$"</span>&#125;  <span class="comment">//map函数对每个元素后加上字符$，返回[a$,b$,c$]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>map函数的签名如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T,R&gt;</span> Iterable<span class="type">&lt;T&gt;</span>.<span class="title">map</span><span class="params">(transform:(<span class="type">T</span>)-&gt;<span class="type">R</span>)</span></span>:List&lt;R&gt;  <span class="comment">//这个是List和Set的map函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span><span class="type">&lt;K,V,R&gt;</span>Map<span class="type">&lt;K,V&gt;</span>.<span class="title">map</span><span class="params">(transform:(<span class="type">Map</span>.<span class="type">Entry</span>&lt;<span class="type">K</span>,<span class="type">V</span>)-&gt;<span class="type">R</span>)</span></span>:List&lt;R&gt; <span class="comment">//Map的map函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这里的R类型是映射之后的数据类型，我们也可以传入一个List：</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">    <span class="keyword">val</span> strlist=listOf(<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>)</span><br><span class="line">    strlist.map&#123;it-&gt;listOf(it+<span class="number">1</span>,it+<span class="number">2</span>,it+<span class="number">3</span>,it+<span class="number">4</span>)&#125; <span class="comment">//map函数，每个it映射之后返回一个List，这个List中有4个元素，分别是it+1，it+2，it+3，it+4</span></span><br><span class="line">    </span><br><span class="line">    println(strlist.map&#123;it-&gt;listOf(it+<span class="number">1</span>,it+<span class="number">2</span>,it+<span class="number">3</span>,it+<span class="number">4</span>)&#125;) </span><br><span class="line">    <span class="comment">/* 返回的类型是List，也就是一个List里嵌套一个List</span></span><br><span class="line"><span class="comment">    打印结果：[[a1,a2,a3,a4],[b1,b2,b3,b4],[c1,c2,c3,c4]]</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Kotlin中还提供了一个flatten()函数，效果是把嵌套的List结构“平铺”，变成一层的结构</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">println(strlist.map&#123;it-&gt;listOf(it+<span class="number">1</span>,it+<span class="number">2</span>,it+<span class="number">3</span>,it+<span class="number">4</span>)&#125;.flatten())<span class="comment">//"平铺"函数，把嵌套在List中的元素“平铺”成一层List</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//打入结果：[a1,a2,a3,a4,b1,b2,b3,b4,c1,c2,c3,c4]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>flatMap函数式map和flat两个函数的“复合逻辑”，代码示例如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">println(strlist.flatMap&#123;it-&gt;listOf(it+<span class="number">1</span>,it+<span class="number">2</span>,it+<span class="number">3</span>,it+<span class="number">4</span>)&#125;)</span><br><span class="line"><span class="comment">//打印结果：[a1,a2,a3,a4,b1,b2,b3,b4,c1,c2,c3,c4]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="1-6-过滤函数"><a href="#1-6-过滤函数" class="headerlink" title="1.6  过滤函数"></a>1.6  过滤函数</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>(<span class="keyword">var</span> id:<span class="built_in">Long</span>,<span class="keyword">var</span> name:String,<span class="keyword">val</span> age:<span class="built_in">Int</span>,<span class="keyword">var</span> score:<span class="built_in">Int</span>)&#123;</span><br><span class="line">         <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>:String&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="string">"Student(id=<span class="variable">$id</span>,name=<span class="variable">$name</span>,age=<span class="variable">$age</span>,score=<span class="variable">$score</span>)"</span></span><br><span class="line">             <span class="comment">//重写toString()函数，是为了看到打印信息</span></span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">    <span class="keyword">val</span> studentList=listOf(</span><br><span class="line">        Student(<span class="number">1</span>,<span class="string">"Jack"</span>,<span class="number">18</span>,<span class="number">90</span>),</span><br><span class="line">        Student(<span class="number">2</span>,<span class="string">"Kim"</span>,<span class="number">19</span>,<span class="number">89</span>),</span><br><span class="line">        Student(<span class="number">3</span>,<span class="string">"Alice"</span>,<span class="number">17</span>,<span class="number">88</span>)</span><br><span class="line">    )</span><br><span class="line">    println(studentList.filter&#123;it-&gt;it.age&gt;<span class="number">18</span>&#125;)</span><br><span class="line">    <span class="comment">//打印结果：[Student(id=2,name=Kim,age=19,score=89)]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>另外，如果想要通过访问下标来过滤，可以使用filterIndexed()函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list=listOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">println(list.filterIndexed&#123;index, it-&gt;index%<span class="number">2</span>==<span class="number">0</span>&amp;&amp;it&gt;<span class="number">3</span>&#125;)</span><br><span class="line"><span class="comment">/*带下标过滤List中的元素</span></span><br><span class="line"><span class="comment">打印结果：[5,7]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>filterIndexed()函数签名如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Iterable<span class="type">&lt;T&gt;</span>.<span class="title">filterIndexed</span><span class="params">(predicate:(<span class="type">index</span>:<span class="type">Int</span>,<span class="type">T</span>)-&gt;<span class="type">Boolean</span>)</span></span>:List&lt;T&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="1-7-排序函数"><a href="#1-7-排序函数" class="headerlink" title="1.7  排序函数"></a>1.7  排序函数</h3><h4 id="1-7-1-Kotlin-集合类中提供了倒序列集合类元素的函数reversed-，代码示例如下："><a href="#1-7-1-Kotlin-集合类中提供了倒序列集合类元素的函数reversed-，代码示例如下：" class="headerlink" title="1.7.1 Kotlin 集合类中提供了倒序列集合类元素的函数reversed()，代码示例如下："></a>1.7.1 Kotlin 集合类中提供了倒序列集合类元素的函数reversed()，代码示例如下：</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list=listOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line"><span class="keyword">val</span> <span class="keyword">set</span>=setOf(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">list.reversed()   <span class="comment">//倒序函数，返回[7,6,5,4,3,2,1]</span></span><br><span class="line"><span class="keyword">set</span>.reversed()    <span class="comment">//倒序函数，返回[2,3,1]</span></span><br><span class="line"><span class="comment">//这里的倒序函数，指的是index下标的倒序，而不是value的倒序</span></span><br></pre></td></tr></table></figure>
+
+<p>这个Iterable的扩展函数reversed()是直接调用的java.util.Collection.reverse()方法。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span><span class="type">&lt;T&gt;</span>Iterable<span class="type">&lt;T&gt;</span>.<span class="title">reversed</span><span class="params">()</span></span>:List&lt;T&gt;&#123;</span><br><span class="line">   <span class="keyword">if</span>(<span class="keyword">this</span> <span class="keyword">is</span> Collection &amp;&amp; size&lt;=<span class="number">1</span>) <span class="keyword">return</span> toList()</span><br><span class="line">   <span class="keyword">val</span> list = toMutableList()</span><br><span class="line">   list.reverse()  <span class="comment">//调用Java中List类型的reverse()方法</span></span><br><span class="line">   <span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> MutableList<span class="type">&lt;T&gt;</span>.<span class="title">reverse</span><span class="params">()</span></span>:<span class="built_in">Unit</span>&#123;</span><br><span class="line">    java.util.Collection.reverse(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="1-7-2-升序排序函数sorted"><a href="#1-7-2-升序排序函数sorted" class="headerlink" title="1.7.2  升序排序函数sorted()"></a>1.7.2  升序排序函数sorted()</h4><p>升序排序函数sorted()，是对List、Set进行value值的升序排序。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">println(list.sorted())  <span class="comment">//打印结果：[1,2,3,4,5,6,7]</span></span><br><span class="line">println(<span class="keyword">set</span>.sorted())   <span class="comment">//打印结果：[1,2,3]</span></span><br></pre></td></tr></table></figure>
+
+<p>Kotlin中的这个sorted()函数也是直接调用Java的API来实现的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> fun &lt;T :Comparable&lt;T&gt;&gt;Iterable&lt;T&gt;.sorted():List&lt;T&gt;&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">this</span> is Collection)&#123;</span><br><span class="line">        <span class="keyword">if</span>(size&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">this</span>.toList()</span><br><span class="line">        <span class="meta">@Suppress</span>(<span class="string">"UNCHECKED_CAST"</span>)</span><br><span class="line">        <span class="keyword">return</span>(toTypeArray&lt;Comparable&lt;T&gt;&gt;()as Array&lt;T&gt;).apply&#123;sort()&#125;.asList()</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> toMutableList().apply&#123;sort()&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其背后调用的是Java.util.Arrays.sort()方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> fun&lt;T&gt;Array&lt;out T&gt;.sort():Unit&#123;</span><br><span class="line">   it(size&gt;<span class="number">1</span>)</span><br><span class="line">   java.util.Arrays.sort(<span class="keyword">this</span>)  <span class="comment">//调用Java中Arrays类型的sort方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="1-8-元素去重"><a href="#1-8-元素去重" class="headerlink" title="1.8  元素去重"></a>1.8  元素去重</h3><p>如果我们想对一个List列表进行元素去重，可以直接调用distinct()函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> dupList=listOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">dupList.distinct()   <span class="comment">//去重函数，返回[1,2,3]</span></span><br></pre></td></tr></table></figure>
+
+<p>Kotlin的集合类中还提供了许多功能丰富的API，此处不再一一介绍。更多内容可以参考官方API文档。</p>
+<p>http:// kotlinlang.org/ api/ latest/ jvm/ stdlib/ kotlin.collections/ index.html</p>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2020/04/30/Kotlin%E9%9B%86%E5%90%88%E7%B1%BB/">Kotlin集合类</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 风铃 的个人博客">风铃</a></p>
+  <p><span>发布时间:</span>2020年04月30日 - 12:45</p>
+  <p><span>最后更新:</span>2020年05月01日 - 14:24</p>
+  <p><span>原始链接:</span><a href="/2020/04/30/Kotlin%E9%9B%86%E5%90%88%E7%B1%BB/" title="Kotlin集合类">http://yoursite.com/2020/04/30/Kotlin%E9%9B%86%E5%90%88%E7%B1%BB/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/04/30/Kotlin%E9%9B%86%E5%90%88%E7%B1%BB/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+	});
+    });
+</script>
+
+
+          
+    </div>
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/kotlin/" rel="tag"><i class="fa fa-tag"></i> kotlin</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/30/Kotlin%E6%89%A9%E5%B1%95%E5%87%BD%E6%95%B0%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B1%9E%E6%80%A7/" rel="prev" title="Kotlin扩展函数与扩展属性">
+      <i class="fa fa-chevron-left"></i> Kotlin扩展函数与扩展属性
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kotlin集合类"><span class="nav-number">1.</span> <span class="nav-text">Kotlin集合类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-集合类概述"><span class="nav-number">1.1.</span> <span class="nav-text">1. 集合类概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-常用的三种集合类"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1  常用的三种集合类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-不可变集合类"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2  不可变集合类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-创建集合类"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3  创建集合类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-遍历集合中的元素"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 遍历集合中的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-映射函数"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5  映射函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-过滤函数"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6  过滤函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-排序函数"><span class="nav-number">1.1.7.</span> <span class="nav-text">1.7  排序函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-1-Kotlin-集合类中提供了倒序列集合类元素的函数reversed-，代码示例如下："><span class="nav-number">1.1.7.1.</span> <span class="nav-text">1.7.1 Kotlin 集合类中提供了倒序列集合类元素的函数reversed()，代码示例如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-2-升序排序函数sorted"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">1.7.2  升序排序函数sorted()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-元素去重"><span class="nav-number">1.1.8.</span> <span class="nav-text">1.8  元素去重</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">风铃</p>
+  <div class="site-description" itemprop="description">书到用时方恨少</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/timeline" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;timeline" rel="noopener" target="_blank"><i class="fab fa-studiovinari fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/" title="简书 → https:&#x2F;&#x2F;www.jianshu.com&#x2F;" rel="noopener" target="_blank"><i class="heartbeat fa-fw"></i>简书</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.alloyteam.com/nav/" title="前端导航 → http:&#x2F;&#x2F;www.alloyteam.com&#x2F;nav&#x2F;" rel="noopener" target="_blank"><i class="fab fa-anchor fa-fw"></i>前端导航</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gank.io/post/5e51f4594ae9df8c6555fdc5" title="干货集中营 → https:&#x2F;&#x2F;gank.io&#x2F;post&#x2F;5e51f4594ae9df8c6555fdc5" rel="noopener" target="_blank"><i class="fab fa-canadian-maple-left fa-fw"></i>干货集中营</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">风铃</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"BOllTvvO1bmv2xzmArufPDtv-gzGzoHsz","app_key":"Vg4isoMjyOhN5xKRaVDBUtRT","server_url":null,"security":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.3" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+     <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+     <script type="text/javascript" src="/js/fireworks.js"></script>
+  
+</body>
+</html>
