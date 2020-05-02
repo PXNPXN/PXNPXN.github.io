@@ -1898,4 +1898,147 @@
         <tag>kotlin</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Kotlin 泛型</title>
+    <url>/2020/05/01/Kotlin-%E6%B3%9B%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="Kotlin-泛型"><a href="#Kotlin-泛型" class="headerlink" title="Kotlin 泛型"></a>Kotlin 泛型</h1><a id="more"></a>
+
+<h2 id="1-参数化类型-Parameterized-Type"><a href="#1-参数化类型-Parameterized-Type" class="headerlink" title="1.参数化类型( Parameterized Type)"></a>1.参数化类型( Parameterized Type)</h2><p>   参数化类型，顾名思义就是将类型由原来的具体化类型参数化，类似于方法中的变量参数，此时类型也       定义成参数形式，我们称之为类型参数，然后在使用时传入具体的类型(类型参数)</p>
+<p>在没有泛型之前，在Java中，Object类是所有类的根类 为了集合类的通用性，把元素的类型定义为Object，当放入具体的类型时，再进行相应的强制类型转换。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RawArrayList</span></span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">int</span> length=<span class="number">0</span>;</span><br><span class="line">   <span class="keyword">private</span> Object[] element;    <span class="comment">//把元素的类型定义为Object</span></span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">RawArrayList</span><span class="params">(<span class="keyword">int</span> length)</span></span>&#123; <span class="comment">//构造函数</span></span><br><span class="line">      <span class="keyword">this</span>.length=length;</span><br><span class="line">      <span class="keyword">this</span>.element=<span class="keyword">new</span> Object[length];  <span class="comment">//创建一个长度为length的Object数组</span></span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;   <span class="comment">//get方法</span></span><br><span class="line">      <span class="keyword">return</span> element[index];</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index,Object element)</span></span>&#123;  <span class="comment">//个下标位置为index的元素赋值为element</span></span><br><span class="line">      elements[index]=element;</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RawTypeDemo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">           RawArrayList rawArrayList = <span class="keyword">new</span> RawArrayList(<span class="number">4</span>);</span><br><span class="line">        </span><br><span class="line">           rawArrayList.add(<span class="string">"a"</span>);</span><br><span class="line">           rawArrayList.add(<span class="string">"b"</span>);</span><br><span class="line">           System.out.println(rawArrayList);</span><br><span class="line">           </span><br><span class="line">          String a=(String)rawArrayList.get(<span class="number">0</span>);</span><br><span class="line">          System.out.println(a);</span><br><span class="line">        </span><br><span class="line">          String b=(String)rawArrayList.get(<span class="number">1</span>);</span><br><span class="line">          System.out.println(b);</span><br><span class="line">          </span><br><span class="line">          rawArrayList.add(<span class="number">2</span>,<span class="number">200</span>);</span><br><span class="line">          rawArrayList.add(<span class="number">3</span>,<span class="number">300</span>);</span><br><span class="line">          System.out.println(rawArrayList)</span><br><span class="line">          </span><br><span class="line">          <span class="keyword">int</span> c=(<span class="keyword">int</span>)rawArrayList.get(<span class="number">2</span>);</span><br><span class="line">          <span class="keyword">int</span> d=(<span class="keyword">int</span>)rawArrayList.get(<span class="number">3</span>);</span><br><span class="line">          System.out.println(c);</span><br><span class="line">          System.out.println(d);</span><br><span class="line">          </span><br><span class="line">          String x=(String)rawArrayList.get(<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//上句报错:Exception in thread "main" java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String</span></span><br><span class="line">        <span class="comment">//对于这行代码，编译时不会报错，但是运行时会抛出类型转换错误。</span></span><br><span class="line">          System.out.println(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在使用原生态类型(rawtype) 实现的集合类中，我们使用的是Object[]数组。这种实现方式存在的问题有两个：</p>
+<ul>
+<li>向集合中添加对象元素的时候，没有对元素的类型进行检查。也就是说，我们向集合中添加任意对象，编译器都不会报错。</li>
+<li>当我们从集合中获取一个值的时候，不能都使用Object类型，需要进行强制类型转换。而这个转换过程由于在添加元素的时候没有做任何的类型的限制与检查，所以容易出错。</li>
+</ul>
+<p>我们将这个元素类型String的信息存放到一个“类型参数”中，然后在编译器层面引入相应的类型检查和自动转换机制，这样就可以解决类型安全使用的问题了。这也正是引入泛型的基本思想。</p>
+<p>也就是是说，在向rawArrayList添加元素的时候，就限定其元素类型只能为String，然后在后面获取元素的时候，自动强制转型为String。</p>
+<ul>
+<li>泛型最主要的优点就是让编译器追踪参数类型，执行类型检查和类型转换。为由编译器来保证类型转换不会失败，如果依赖程序员自己去追踪对象类型和执行转换，那么运行时产生的错误将很难去定位和调试。</li>
+</ul>
+<h2 id="2-在类、接口和函数上使用泛型"><a href="#2-在类、接口和函数上使用泛型" class="headerlink" title="2.  在类、接口和函数上使用泛型"></a>2.  在类、接口和函数上使用泛型</h2><p>泛型类、泛型接口和泛型方法具备可重用性、类型安全和高效等优点。在集合类API中大量地使用了泛型。在Java中我们可以为类、接口和方法分别定义泛型参数，在Kotlin中也同样支持。</p>
+<h3 id="2-1-泛型接口"><a href="#2-1-泛型接口" class="headerlink" title="2.1  泛型接口"></a>2.1  泛型接口</h3><p>下面先举一个简单的Kotlin泛型接口的例子</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Generator</span>&lt;<span class="type">T</span>&gt;</span>&#123;   <span class="comment">//类型参数放在接口名称后面:&lt;T&gt;</span></span><br><span class="line">   <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">next</span><span class="params">()</span></span>:T  <span class="comment">//接口函数中直接使用类型T</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testGenerator</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">val</span> gen=<span class="keyword">object</span> : Generator&lt;<span class="built_in">Int</span>&gt;&#123;  <span class="comment">//对象表达式</span></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">next</span><span class="params">()</span></span>: <span class="built_in">Int</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Random().nextInt(<span class="number">10</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    println(gen.next())   <span class="comment">//打印结果：(1-10)之间的一个Int类型的数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">      textGenerator()    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-泛型类"><a href="#2-2-泛型类" class="headerlink" title="2.2 泛型类"></a>2.2 泛型类</h3><p>声明一个带类型参数的Container类</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Container</span>&lt;<span class="type">K,V</span>&gt;</span>(<span class="keyword">var</span> key:K,<span class="keyword">var</span> value:V)&#123;</span><br><span class="line">      <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>:String&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="string">"Container(Key=<span class="variable">$key</span>,value=<span class="variable">$value</span>)"</span></span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testContainer</span><span class="params">()</span></span>&#123;</span><br><span class="line">   <span class="keyword">val</span> container=Container&lt;<span class="built_in">Int</span>,String&gt;(<span class="number">3</span>,<span class="string">"Kotlin"</span>)<span class="comment">//&lt;K,V&gt;被具体化为&lt;Int,String&gt;</span></span><br><span class="line">   println(container)  <span class="comment">//打印结果：Container(Key=3,value=Kotlin)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-3-泛型函数"><a href="#2-3-泛型函数" class="headerlink" title="2.3 泛型函数"></a>2.3 泛型函数</h3><p>在泛型接口和泛型类中，我们都在类名和接口名后面声明了泛型参数。而实际上也可以直接在类或接口中的函数声明泛型参数或者在包级中直接声明泛型参数。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericClass</span></span>&#123;   <span class="comment">//类中的泛型函数</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span><span class="type">&lt;T&gt;</span> <span class="title">console</span><span class="params">(t:<span class="type">T</span>)</span></span>&#123;</span><br><span class="line">       println(it)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">GenericInterface</span></span>&#123; <span class="comment">//接口中的泛型函数</span></span><br><span class="line">   <span class="function"><span class="keyword">fun</span><span class="type">&lt;T&gt;</span> <span class="title">console</span><span class="params">(t:<span class="type">T</span>)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span><span class="type">&lt;T : Comparable&lt;T&gt;</span>&gt; <span class="title">gt</span><span class="params">(x:<span class="type">T</span>,y:<span class="type">T</span>)</span></span>:<span class="built_in">Boolean</span>&#123; <span class="comment">//包中的泛型函数</span></span><br><span class="line">     <span class="keyword">return</span> x&gt;y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-类型上界"><a href="#3-类型上界" class="headerlink" title="3.  类型上界"></a>3.  类型上界</h2><p>gt(x:T,y:T)函数的签名中有个T:Comparable<T>:</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T:Comparable&lt;T&gt;</span>&gt; <span class="title">gt</span><span class="params">(x:<span class="type">T</span>,y:<span class="type">T</span>)</span></span>:<span class="built_in">Boolean</span></span><br><span class="line"><span class="comment">//T的类型上界是Comparable&lt;T&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的T:Comparable,，表示Comparable是类型T的上界。也就是告诉编译器，类型参数T代表的都是实现了Comparable接口的类，这样等于告诉编译器它们都实现了CompareTo方法。如果没有在这个类型上界进行声明，就无法直接使用CompareTo  “&gt;” 操作符。 也就是说，下面的代码编译不通过</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span><span class="type">&lt;T&gt;</span> <span class="title">gt</span><span class="params">(x:<span class="type">T</span>,y:<span class="type">T</span>)</span></span>:<span class="built_in">Boolean</span>&#123;</span><br><span class="line">     <span class="keyword">return</span> x&gt;y  <span class="comment">//编译不通过</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-协变和逆变"><a href="#4-协变和逆变" class="headerlink" title="4. 协变和逆变"></a>4. 协变和逆变</h2><p>首先有下面存在父子关系的类型：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1. 类的继承关系</span></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Food</span></span></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Fruit</span>:<span class="type">Food</span></span>()  <span class="comment">//Fruit继承Food</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span>:<span class="type">Fruit</span></span>()      <span class="comment">//Apple继承Fruit</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Banana</span>:<span class="type">Fruit</span></span>()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grape</span>:<span class="type">Fruit</span></span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.有如下两个函数</span></span><br><span class="line"><span class="keyword">object</span> GenericTypeDemo&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">addFruit</span><span class="params">(fruit:<span class="type">MutableList</span>&lt;<span class="type">Fruit</span>&gt;)</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getFruit</span><span class="params">(fruit:<span class="type">MutableList</span>&lt;<span class="type">Fruit</span>&gt;)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.调用上面两个函数</span></span><br><span class="line"><span class="keyword">val</span> fruits: MutableList&lt;Fruit&gt;=mutableListOf(Fruit(),Fruit(),Fruit())</span><br><span class="line">GenericTypeDemo.addFruit(fruits)</span><br><span class="line">GenericTypeDemo.getFruit(fruits)</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.现在又有一个存放Apple的List：</span></span><br><span class="line"><span class="keyword">val</span> apples:MutableList&lt;Fruit&gt;=mutableListOf(Apple(),Apple(),Apple())</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 5.由于Kotlin中的泛型与Java一样是非协变的，因此下面调用是编译不通过的*/</span></span><br><span class="line">GenericTypeDemo.addFruit(apples)  <span class="comment">//type mismatch</span></span><br><span class="line">GenericTypeDemo.getFruit(apples)  <span class="comment">//type mismatch</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//6.如果没有协变，那么我们不得不再添加两个函数：</span></span><br><span class="line"><span class="keyword">object</span> GenericTypeDemo&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">addFruit</span><span class="params">(fruit:<span class="type">MutableList</span>&lt;<span class="type">Fruit</span>&gt;)</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getFruit</span><span class="params">(fruit:<span class="type">MutableList</span>&lt;<span class="type">Fruit</span>&gt;)</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">addFruit</span><span class="params">(fruit:<span class="type">MutableList</span>&lt;<span class="type">Fruit</span>&gt;)</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getFruit</span><span class="params">(fruit:<span class="type">MutableList</span>&lt;<span class="type">Fruit</span>&gt;)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们一眼就能看出，这是重复的样板代码。那么能不能让MutableList成为MutableList的父类型呢？Java泛型中引入了类型通配符的概念来解决这个问题。</p>
+<h3 id="4-1-Java泛型的通配符有两种形式："><a href="#4-1-Java泛型的通配符有两种形式：" class="headerlink" title="4.1 Java泛型的通配符有两种形式："></a>4.1 Java泛型的通配符有两种形式：</h3><ul>
+<li>子类型上界限定符?extendsT指定类型参数的上限(该类型必须是类型T或者是它的子类型)。也就是说MutableList&lt;?extends Fruit&gt;是MutableList的父类型。Kotlin中使用MutableList来表示。</li>
+</ul>
+<ul>
+<li><p>超类型下界限定符?superT指定类型参数的下限(该类型必须是类型T或者它的父类型)。 也就是说MutableList&lt;? super Fruit&gt;是MutableList的父类型。Kotlin中使用MutableList来表示。</p>
+<p>*这里的问号”?”，称之为类型通配符(Type Wildcard)。通配符在类型系统中具有重要的意义，它们为一个泛型类所指定的类型集合提供一个有用的类型范围。</p>
+</li>
+</ul>
+<h3 id="4-2-C-gt-F-C继承F"><a href="#4-2-C-gt-F-C继承F" class="headerlink" title="4.2 C=&gt;F(C继承F)"></a>4.2 C=&gt;F(C继承F)</h3><p>Number类型(简记为F) 是Integer类型(简记为C)的父类型，我们把这种父子类型关系简记为C=&gt;F(C继承F)；而List代表的泛型类型信息分别简记为f(F)，f(C)。</p>
+<h3 id="4-3-协变和逆变的描述："><a href="#4-3-协变和逆变的描述：" class="headerlink" title="4.3  协变和逆变的描述："></a>4.3  协变和逆变的描述：</h3><ul>
+<li>当C=&gt;F时，如果有f(C)=&gt;f(F)，那么f叫做协变；</li>
+<li>当C=&gt;F时，如果有f(F)=&gt;f(C)，那么f叫做逆变，如果上面两种关系都不成立则叫做不变。</li>
+</ul>
+<p>协变与逆变可以用下图来说明。</p>
+<img src="https://s1.ax1x.com/2020/05/02/JxpoC9.jpg" style="zoom:50%;" />
+
+
+
+<h4 id="4-3-1-协变"><a href="#4-3-1-协变" class="headerlink" title="4.3.1  协变"></a>4.3.1  协变</h4><p>Java中的数组是协变的，下面的代码是可以正确编译运行的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer[] ints =<span class="keyword">new</span> Integer[<span class="number">3</span>];</span><br><span class="line">ints[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">ints[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">ints[<span class="number">2</span>]=<span class="number">2</span>;</span><br><span class="line">Number[] numbers=<span class="keyword">new</span> Number[<span class="number">3</span>];</span><br><span class="line">numbers=ints;    <span class="comment">//数组是协变的，可以正确赋值</span></span><br><span class="line"><span class="keyword">for</span>(Number n: numbers)&#123;</span><br><span class="line">    System.out.println(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Java中，因为Integer是Number的子类型，数组类型Integer[] 也是Number[]的子类型，因此在任何需要Number[]值得地方都可以提供一个Integer[]值。Java中数组协变的意思可以用下图来说明。</p>
+<img src="C:\Users\PXN\AppData\Roaming\Typora\typora-user-images\image-20200502201703005.png" style="zoom:50%;" />
+
+
+
+<p>Java中的泛型是非协变的。也就是说，List<Integer>不是List<Number>的子类型，在要求List<Number>的位置提供List<Integer>会提示类型错误。下面代码，编译器是会直接报错的：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; integerList= <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">integerList.add(<span class="number">0</span>);</span><br><span class="line">integerList.add(<span class="number">1</span>);</span><br><span class="line">integerList.add(<span class="number">2</span>);</span><br><span class="line">List&lt;Number&gt; numberList= <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">numberList=integerLsit; <span class="comment">//编译错误；类型不兼容</span></span><br></pre></td></tr></table></figure>
+
+<p>Java中的泛型是非协变的：</p>
+<img src="https://s1.ax1x.com/2020/05/02/JxiciF.jpg" style="zoom:50%;" />
+
+
+
+<p>Java中泛型和数组的不同行为的确引起了许多混乱，就算我们使用通配符这样写：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;? extends Number&gt; list=<span class="keyword">new</span> ArrayList&lt;Number&gt;();</span><br><span class="line">list.add(<span class="keyword">new</span> Integer(<span class="number">1</span>)); <span class="comment">//errror 报类型不兼容的错误信息</span></span><br></pre></td></tr></table></figure>
+
+<p>那为什么Number的对象可以由Integer实例化，而ArrayList<Number>的对象却不能由ArrayList<Integer>实例化？list中的&lt;? extends Number&gt;声明其元素是Number或Number的派生类，为什么补鞥呢add Integer?为了弄清楚这些问题，我们需要了解Java中的逆变和协变及泛型中通配符的用法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;? extends Number&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>这里的子类型C就是Number类及其子类(如Number、Integer、Float等)，表示是Number类或其子类。父类F就是上界通配符？extends Number。</p>
+<p>代码示例如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;? extends Number&gt; list1= <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">List&lt;? extends Number&gt; list2= <span class="keyword">new</span> ArrayList&lt;Float&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>但是这里不能向list、list2添加除null以外的任意对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">list1.add(<span class="keyword">null</span>);          <span class="comment">//ok</span></span><br><span class="line">list2.add(<span class="keyword">null</span>);          <span class="comment">//ok</span></span><br><span class="line"></span><br><span class="line">list1.add(<span class="keyword">new</span> Integer(<span class="number">1</span>));  <span class="comment">//error</span></span><br><span class="line">list2.add(<span class="keyword">new</span> Float(<span class="number">1.1f</span>)); <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+
+<p>List<Integer>可以添加Integer及其子类；List<Float>可以添加Float及其子类；List<Integer>、List<Float>等都是List&lt;? extends Number&gt;的子类型。</p>
+<p>现在问题来了，如果能将Float的子类添加到List&lt;? extends Number&gt;中，也能将Integer的子类添加到List&lt;? extends Number&gt;中，那么List&lt;? extends Number&gt;里面将会持有各种Number子类型的对象(如Byte、Integer、Float、Double等)。而这个时候，当我们再使用这个List的时候，元素的类型就会混乱，我们不知道哪个元素是Integer或者Float。Java为了保护其类型一致，禁止向List&lt;? extends Number&gt;添加任意Number子类型的对象，不过可以添加空对象null。</p>
+<h4 id="4-3-2-逆变"><a href="#4-3-2-逆变" class="headerlink" title="4.3.2  逆变"></a>4.3.2  逆变</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;? <span class="keyword">super</span> Number&gt; list= <span class="keyword">new</span> ArrayList&lt;Object&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>这里的子类型C是 “? super Number”，父类型F是Number的父类型(如 Object类)。</p>
+<img src="https://s1.ax1x.com/2020/05/02/JxmaDJ.jpg" style="zoom:50%;" />
+
+<p>代码示例如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;? <span class="keyword">super</span> Number&gt; list3 = <span class="keyword">new</span> ArrayList&lt;Number&gt;();   <span class="comment">//Java中的&lt;? super Number&gt;通配符</span></span><br><span class="line">List&lt;? <span class="keyword">super</span> Number&gt; lsit4 = <span class="keyword">new</span> ArrayList&lt;Object&gt;();</span><br><span class="line">list3.add(<span class="keyword">new</span> Integer(<span class="number">3</span>));     <span class="comment">//可以添加Integer类型的元素</span></span><br><span class="line">list4.add(<span class="keyword">new</span> Integer(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
+
+<p>在逆变类型中，我们可以向其中添加元素。例如，可以向List&lt;? super Number&gt; list4 变量中添加Number及其子类对象。</p>
+<h4 id="4-3-3-PECS"><a href="#4-3-3-PECS" class="headerlink" title="4.3.3 PECS"></a>4.3.3 PECS</h4><p>我们什么时候用extends，什么时候用super呢？</p>
+<p>Effective Java给出了答案：</p>
+<p>PECS (Producer- Extends,Consumer-super)</p>
+<p>Naftalin 与 Wadler 将PECS称为 Get and Put Principle。</p>
+<p>在 java.util.Collections的copy()方法中(JDK1.7)完美地诠释了PECS，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">copy</span><span class="params">(List&lt;? <span class="keyword">super</span> T&gt; dest, List&lt;? extends T&gt; src)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> srcSize =src.size();</span><br><span class="line">       <span class="keyword">if</span>(srcSize&gt;dest.size())</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"Source does not fit in dest"</span>);</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">if</span>(srcSize&lt;copy_THRESHOLD ||</span><br><span class="line">          (src <span class="keyword">instanceof</span> RandomAccess &amp;&amp; dext <span class="keyword">instanceof</span> RandomAccess))&#123;</span><br><span class="line">               <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;srcSize;i++)</span><br><span class="line">               dest.set(i,src.get(i));</span><br><span class="line">          &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             ListIterator&lt;? <span class="keyword">super</span> T&gt; di=dest.listIterator(); <span class="comment">//in T,写入dest数据</span></span><br><span class="line">             ListIterator&lt;? extends T&gt; si=src.listIterator(); <span class="comment">//out T, 读取src数据</span></span><br><span class="line">             <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;srcSize;i++)&#123;</span><br><span class="line">                   di.next();</span><br><span class="line">                   di.set(si.next());</span><br><span class="line">             &#125;</span><br><span class="line">          &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="5-outT-与inT"><a href="#5-outT-与inT" class="headerlink" title="5. outT 与inT"></a>5. outT 与inT</h2><p>正如前面所讲的，在Java泛型里有通配符这个东西，我们要用？extends T指定类型参数的上界，用？super T指定类型参数的下界。</p>
+<p>而Kotlin 抛弃了这个通配符，直接实现了前面所讲的PECS规则。Kotlin中引入了投射类型outT代表生产者对象，使用投射类型in T代表消费者对象，使用投射类型(projected type)out T 和 in T来实现与类型通配符同样的功能。</p>
+<p>下面通过代码示例简单讲解一下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">copy</span><span class="params">(List&lt;? <span class="keyword">super</span> T&gt; dest,List&lt;? extends T&gt; src)</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    ListIterator&lt;? <span class="keyword">super</span> T&gt; di =dest.listIterator();    <span class="comment">//in T，写入dest数据</span></span><br><span class="line">    ListIterator&lt;? extends T&gt; si = src.listIterator();  <span class="comment">//out T,读取src数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>List&lt;? super T&gt;dest是消费数据的对象，数据会被写入dest对象中，这些数据对象被”消费者吞进肚子里”了(Kotlin 中 叫 in T)。</p>
+<p>List&lt;? extends T&gt;src是生产提供数据的对象。src会 “产出” 数据(Kotlin 中叫 out T).</p>
+<p>在Kotlin中，我们把只能保证数据时类型安全的对象叫做生产者，用out T标记；把只能保证写入数据时类型安全的对象叫做消费者，用 in T标记。</p>
+<p>可以这么记：</p>
+<p>out T 等价于？extends T</p>
+<p>in T 等价于？super T</p>
+<h2 id="6-类型擦除"><a href="#6-类型擦除" class="headerlink" title="6. 类型擦除"></a>6. 类型擦除</h2><p>Java和Kotlin的泛型实现，都是采用了运行时类型擦除的方式。也就是说，在运行时，这些类型参数的信息将会被擦除。</p>
+<p>泛型是在编译器层次上实现的，生成的class字节码文件中是不包含泛型中的类型信息的。例如，在代码中定义的List<Object>和List<String>等类型，在编译之后都会变成List。JVM看到的只是List，而由泛型附加的类型信息对JVM来说是不可见的。</p>
+<p>关于泛型的很多奇怪特性都与这个类型擦除的存在有关，如泛型类并没有自己独有的Class类对象。比如Java中并不存在List<String>.class或是List<Integer>.class，而只有List.class。对应地在Kotlin中并不存在MutableList<Fruit>::class，而只有MutableList::class 。</p>
+<p>类型擦除的基本过程也比较简单：</p>
+<ul>
+<li>首先，找到用来替换类型参数的具体类。这个具体类一般是Object。如果指定了类型参数的上界的话，则使用这个上界。</li>
+<li>其次，把代码中的类型参数都替换成具体的类。同时去掉出现的类型声明，即去掉&lt;&gt;的内容。例如，Tget()就变成了Objectget()，List<String>就变成了List。</li>
+<li>最后，根据需要生成一些桥接方法。这是由于擦除了类型之后的可能缺少某些必须的方法。这个时候就由编译器来动态生成这些方法。</li>
+</ul>
+<p>当了解了类型擦除机制之后，我们就会明白是编译器承担了全部的类型检查工作。编译器禁止某些泛型的使用方式，也正是为了确保类型的安全性。</p>
+]]></content>
+      <categories>
+        <category>Kotlin</category>
+      </categories>
+      <tags>
+        <tag>Kotlin</tag>
+      </tags>
+  </entry>
 </search>
