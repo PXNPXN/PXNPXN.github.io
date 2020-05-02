@@ -395,10 +395,8 @@
   </entry>
   <entry>
     <title>Kotlin扩展函数与扩展属性</title>
-    <url>/2020/05/02/Kotlin%E6%89%A9%E5%B1%95%E5%87%BD%E6%95%B0%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B1%9E%E6%80%A7/</url>
-    <content><![CDATA[<p>title: kotlin扩展函数与扩展属性</p>
-<p>date: 2020-04-15 12:43:36<br>tags: kotlin<br>categories: kotlin学习<br>copyright: true</p>
-<h1 id="kotlin扩展函数与扩展属性"><a href="#kotlin扩展函数与扩展属性" class="headerlink" title="kotlin扩展函数与扩展属性"></a>kotlin扩展函数与扩展属性</h1><a id="more"></a>
+    <url>/2020/05/03/Kotlin%E6%89%A9%E5%B1%95%E5%87%BD%E6%95%B0%E4%B8%8E%E6%89%A9%E5%B1%95%E5%B1%9E%E6%80%A7/</url>
+    <content><![CDATA[<h1 id="kotlin扩展函数与扩展属性"><a href="#kotlin扩展函数与扩展属性" class="headerlink" title="kotlin扩展函数与扩展属性"></a>kotlin扩展函数与扩展属性</h1><a id="more"></a>
 
 <p>(近期在学kotlin和vue希望可以慢慢掌握吧—小小白)</p>
 <h2 id="1-给String类扩展firstChar-函数和lastChar-函数"><a href="#1-给String类扩展firstChar-函数和lastChar-函数" class="headerlink" title="1. 给String类扩展firstChar()函数和lastChar()函数"></a>1. 给String类扩展firstChar()函数和lastChar()函数</h2><p>扩展函数与扩展属性可以在不修改原来类的条件下自定义函数和属性，使它们表现得就像是属于这条个类一样。例如，我们给String类型扩展一个返回字符串最后一个字符的firstChar()函数，然后在main函数中调用。代码十分简洁。(kotlin中使用fun来声明函数)</p>
@@ -456,6 +454,12 @@
 </ul>
 <p>*编程技巧提示：可以新建一个公共资源文件，把自定义的扩展属性和扩展函数都放到包中，作为一个通用工具类来使用。</p>
 ]]></content>
+      <categories>
+        <category>kotlin学习</category>
+      </categories>
+      <tags>
+        <tag>kotlin</tag>
+      </tags>
   </entry>
   <entry>
     <title>Kotlin类的学习</title>
