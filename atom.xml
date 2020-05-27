@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-05T04:28:42.718Z</updated>
+  <updated>2020-05-27T07:00:42.650Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis下载和安装</title>
+    <link href="http://yoursite.com/2020/05/27/Redis%E4%B8%8B%E8%BD%BD%E5%92%8C%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/2020/05/27/Redis%E4%B8%8B%E8%BD%BD%E5%92%8C%E5%AE%89%E8%A3%85/</id>
+    <published>2020-05-27T06:32:28.000Z</published>
+    <updated>2020-05-27T07:00:42.650Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Redis下载和安装"><a href="#Redis下载和安装" class="headerlink" title="Redis下载和安装"></a>Redis下载和安装</h1><a id="more"></a><h2 id="1-Redis-的下载"><a href="#1-Redis-的下载" class="headerlink" title="1. Redis 的下载"></a>1. Redis 的下载</h2><p><a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">Redis下载地址</a></p><p>选择对应的版本下载和安装</p><p><img src="https://s1.ax1x.com/2020/05/27/tAQ9oT.png" alt=""></p><h2 id="2-启动Redis"><a href="#2-启动Redis" class="headerlink" title="2. 启动Redis"></a>2. 启动Redis</h2><p>ctr+R键打开cmd窗口输入redis-server.exe(确保Redis环境变量已配置)，如果没有配置环境变量需要在cmd窗口中cd到相应的路径下后输入。</p><p><img src="https://s1.ax1x.com/2020/05/27/tAQx9e.png" alt="启动Redis成功"></p><p>启动后切忌不要关闭启动的窗口，重新开一个cmd窗口进行连接，启动窗口关闭后Redis服务器也就会关闭。</p><h2 id="3-连接Redis"><a href="#3-连接Redis" class="headerlink" title="3.连接Redis"></a>3.连接Redis</h2><p>打开一个新的窗口，输入redis-cli.exe -h 127.0.0.1 -p 6379   </p><p><img src="https://s1.ax1x.com/2020/05/27/tA1pPU.png" alt=""></p><p>显示host和端口号即为成功，默认端口号为6379.</p><h2 id="4-java中利用jedis连接redis"><a href="#4-java中利用jedis连接redis" class="headerlink" title="4. java中利用jedis连接redis"></a>4. java中利用jedis连接redis</h2><p>maven依赖如下   此处为jdk1.7   redis3.2  jedis2.4是没有问题的(如有报错尝试更换版本)</p><p><img src="https://s1.ax1x.com/2020/05/27/tA1DLn.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Redis下载和安装&quot;&gt;&lt;a href=&quot;#Redis下载和安装&quot; class=&quot;headerlink&quot; title=&quot;Redis下载和安装&quot;&gt;&lt;/a&gt;Redis下载和安装&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="Java学习" scheme="http://yoursite.com/categories/Java%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring基于Annotation的装配</title>
+    <link href="http://yoursite.com/2020/05/05/Spring%E5%9F%BA%E4%BA%8EAnnotation%E7%9A%84%E8%A3%85%E9%85%8D/"/>
+    <id>http://yoursite.com/2020/05/05/Spring%E5%9F%BA%E4%BA%8EAnnotation%E7%9A%84%E8%A3%85%E9%85%8D/</id>
+    <published>2020-05-05T11:05:02.000Z</published>
+    <updated>2020-05-05T11:05:02.901Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Kotlin文件I/O操作、正则表达式与多线程</title>
